@@ -11,6 +11,12 @@ class AppComponent {
 	};
 }
 
+function fail() {
+	throw new Error("BLEGH");
+}
+
+fail();
+
 switch (blegh) {
 	case 1:
 		console.log("HEY");
@@ -20,5 +26,3 @@ switch (blegh) {
 		console.log("WHOA");
 		break;
 }
-
-console.log(<AppComponent />);

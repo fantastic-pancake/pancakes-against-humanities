@@ -15,7 +15,7 @@ app.use(express.static("public"));
 
 const useExternalStyles = !isDevelopment;
 const scriptRoot = isDevelopment
-	? "http://lolcahost:8080/build"
+	? "http://localhost:8080/build"
 	: "/build";
 
 app.get("*", (req, res) => {

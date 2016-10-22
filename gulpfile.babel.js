@@ -2,9 +2,13 @@ import gulp from "gulp";
 import path from "path";
 import rimraf from "rimraf";
 import child_process from "child_process";
+import webpackConfig from "./webpack.config.js";
+import webpack from "webpack";
 
 const $ = require("gulp-load-plugins")();
 
+// -----------------------------------
+// Server
 gulp.task("server:clean", cb => {
 	rimraf("./build", () => cb());
 });
@@ -88,5 +92,32 @@ function runServerTests() {
 	return $.nodemon({
 		script: "./tests.js",
 		watch: "build"
+	});
+}
+
+// -----------------------------------
+// Client
+const consoleStats = {
+	colors: true,
+	exclude: ["node_modules"],
+	chunks: false,
+	assets: false,
+	timrings: true,
+	modules: false,
+	hash: false,
+	version: false
+};
+
+gulp.task("client:build", buildClient);
+
+function buildClient(cb) {
+	webpack(webpackConfig, (err, stats) => {
+		if (err) {
+			cb(err);
+			return;
+		}
+
+		console.log(stats.toString(consoleStats));
+		cb();
 	});
 }

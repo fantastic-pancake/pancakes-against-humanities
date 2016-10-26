@@ -41,6 +41,8 @@
     "lodash": "^4.16.4",
     "node-sass": "^3.10.1",
     "pug": "^2.0.0-beta6",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "source-map-support": "^0.4.5",

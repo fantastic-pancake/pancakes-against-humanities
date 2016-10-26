@@ -1,3 +1,3 @@
 import "./client.scss";
 
-console.log("HELLO FROM THE CLIENT");
+console.log("THIS IS A CHANGE");

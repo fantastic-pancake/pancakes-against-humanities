@@ -6,7 +6,7 @@ import * as A from "../actions";
 const defaultView = {
 	id: 42,
 	title: "Nelson's Game",
-	step: A.STEP_SETUP,
+	step: A.STEP_CHOOSE_WHITES,
 	options: {
 		scoreLimit: 5,
 		sets: ["1ed"]
@@ -23,14 +23,40 @@ const defaultView = {
 		{name: "Nelson", message: "Blegh"},
 		{name: "Nelson", message: "Blegh"}
 	],
-	round: null,
+	round: {
+		blackCard: {
+			id: 1,
+			text: "Does something do something?",
+			set: "1ed",
+			whiteCardCount: 3
+		},
+		stacks: [
+			{id: 1, count: 3},
+			{id: 2, count: 1},
+			{id: 3, count: 2}
+		]
+	},
 	timer: null
 };
 
 const defaultPlayerView = {
 	id: 1,
 	hand: [],
-	stack: null
+	stack: {
+		id: 2,
+		cards: [
+			{id: 2, text: "Card 1", set: "1ed"},
+			{id: 3, text: "Card 2", set: "1ed"},
+			{id: 4, text: "Card 3", set: "1ed"},
+			{id: 5, text: "Card 4", set: "1ed"},
+			{id: 6, text: "Card 5", set: "1ed"},
+			{id: 7, text: "Card 6", set: "1ed"},
+			{id: 8, text: "Card 7", set: "1ed"},
+			{id: 9, text: "Card 8", set: "1ed"},
+			{id: 10, text: "Card 9", set: "1ed"},
+			{id: 11, text: "Card 10", set: "1ed"}
+		]
+	}
 };
 
 export default class GameStore {

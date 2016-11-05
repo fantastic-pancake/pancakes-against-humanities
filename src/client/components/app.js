@@ -11,7 +11,6 @@ class AppContainer extends ContainerBase {
 		const {router} = this.props;
 		this.subscribe(app.dialogs$, dialogs => this.setState({dialogs}));
 
-		window.router = router;
 		this.subscribe(
 			dispatcher.onSuccess$(A.GAME_JOIN), 
 			action => {

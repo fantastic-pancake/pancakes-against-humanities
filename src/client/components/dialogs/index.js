@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-const context = require.context("./", false, /\.js^/);
+const context = require.context("./", false, /\.js$/);
 const components = context
 	.keys()
 	.filter(name => name.indexOf("index") == -1)

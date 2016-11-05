@@ -13,6 +13,7 @@ export default class AppStore {
 
 				return stack;
 			}, [])
+			.startWith([])
 			.publishReplay(1);
 		
 		this.dialogs$.connect();

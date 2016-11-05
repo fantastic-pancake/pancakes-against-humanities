@@ -1,14 +1,18 @@
 import "./app.scss";
 
-import React, {Component} from "react";
+import React from "react";
+import {ContainerBase} from "../lib/component";
+import dialogTypes from "./dialogs";
 
-class AppContainer extends Component {
+class AppContainer extends ContainerBase {
 	componentDidMount() {
-		console.log("HEY THERE");
+		const {stores: {app}} = this.context;
+		this.subscribe(app.dialogs$, dialogs => this.setState({dialogs}));
 	}
 
 	render() {
 		const {main, sidebar} = this.props;
+		console.log(this.state && this.state.dialogs);
 
 		return (
 			<div className={`c-application`}>

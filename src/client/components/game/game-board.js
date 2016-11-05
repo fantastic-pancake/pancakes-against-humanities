@@ -39,7 +39,7 @@ export default class GameBoard extends ContainerBase {
 		const {stores: {game}} = this.context;
 		this.subscribe(game.view$, game => this.setState({game}));
 		this.subscribe(game.player$, player => this.setState({player}));
-		this.subscribe(game.opSelectCard$, opSelectCard => this.setState({opSelectCard}));
+		this.subscribe(game.opSelectCard$, opSelectCard => this.setState({opSelectCard, isHandOpen: opSelectCard.can}));
 		this.subscribe(game.opSelectStack$, opSelectStack => this.setState({opSelectStack}));
 	}
 

@@ -18,11 +18,71 @@ runDiffTests({
 		"unchanged on null": [
 			null, null,
 			IS_UNCHANGED
-		],
-		"bheg": [
-			[1], [2],
-			[1]
 		]
+	},
+	array: {
+		"throws on invalid type": () => {
+			expect(() => makeDiff("whoa", [])).toThrow();
+		},
+		"unchanged on empty": [
+			[], [],
+			IS_UNCHANGED
+		],
+		"empties array": [
+			[1, 2, 3], [],
+			{$splice: [0, 3]}
+		],
+		simple: {
+			"unchanged": [
+				[1, 2, 3], [1, 2, 3],
+				IS_UNCHANGED
+			],
+			"splice": [
+				[1, 2, 3], [1, 2, 4, 5],
+				{$splice: [2, 1, 4, 5]}
+			],
+			"add one at end": [
+				[1, 2, 3], [1, 2, 3, 4],
+				{$splice: [3, 0, 4]}
+			],
+			"remove one at end": [
+				[1, 2, 3], [1, 2],
+				{$splice: [2, 1]}
+			],
+			"remove one in middle": [
+				[1, 2, 3], [1, 3],
+				{$splice: [1, 2, 3]}
+			]
+		},
+		complex: {
+			"unchanged": [
+				[
+					{id: 1, text: "old"},
+					{id: 2, text: "whoa"},
+					{id: 3, text: "hey"}
+				], [
+					{id: 1, text: "old"},
+					{id: 2, text: "whoa"},
+					{id: 3, text: "hey"}
+				],
+				IS_UNCHANGED
+			],
+			"removes one": [
+				[{id: 1, text: "hey"}, {id: 2, text: "whoa"}],
+				[{id: 1, text: "hey"}],
+				{$update: {}, ids: [1]}
+			],
+			"reorder": [
+				[{id: 1, text: "hey"}, {id: 2, text: "whoa"}],
+				[{id: 2, text: "whoa"}, {id: 1, text: "hey"}],
+				{$update: {}, ids: [2, 1]}
+			],
+			"update": [
+				[{id: 1, text: "hey"}, {id: 2, text: "whoa"}],
+				[{id: 1, text: "hey"}, {id: 2, text: "hey and whoa"}],
+				{$update: {2: {text: "hey and whoa"}}, ids: [1, 2]}
+			]
+		}
 	}
 });
 

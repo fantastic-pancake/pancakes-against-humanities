@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "node ./tests.js",
-    "start": "node ./server.js"
+    "start": "node ./server.js",
+    "postinstall": "gulp build"
   },
   "author": "Nelson LaQuet",
   "license": "ISC",

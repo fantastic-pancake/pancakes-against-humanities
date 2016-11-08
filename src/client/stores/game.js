@@ -6,7 +6,7 @@ import * as A from "../actions";
 const defaultView = {
 	id: 42,
 	title: "Nelson's Game",
-	step: A.STEP_CHOOSE_WHITES,
+	step: A.STEP_SETUP,
 	options: {
 		scoreLimit: 5,
 		sets: ["1ed"]

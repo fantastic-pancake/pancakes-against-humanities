@@ -11,7 +11,7 @@ export class Game extends RoomBase {
 		return {
 			id: this.id,
 			title: this.title,
-			step: this.stepo,
+			step: this.step,
 			options: this.options,
 			players: this.players.map(player => player.summary),
 			messages: this.messages.slice(),

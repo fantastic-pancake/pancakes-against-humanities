@@ -8,6 +8,9 @@
     "start": "node ./server.js",
     "postinstall": "gulp build"
   },
+  "engines": {
+    "node": "6.3.x"
+  },
   "author": "Nelson LaQuet",
   "license": "ISC",
   "dependencies": {

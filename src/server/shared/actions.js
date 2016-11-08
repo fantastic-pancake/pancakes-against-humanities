@@ -17,6 +17,17 @@ export function succeed(action) {
 }
 
 // -----------------------
+// Views
+export const MERGE_VIEW = "MERGE_VIEW";
+export const mergeView = (view, diff, id = undefined) => ({type: MERGE_VIEW, view, diff, id});
+export const setView = (view, data, id = undefined) => mergeView(view, {$set: data}, id);
+
+export const VIEW_APP = "VIEW_APP";
+export const VIEW_LOBBY = "VIEW_LOBBY";
+export const VIEW_GAME = "VIEW_GAME";
+export const VIEW_PLAYER = "VIEW_PLAYER";
+
+// -----------------------
 // User Actions
 export const USER_LOGIN = "USER_LOGIN";
 export const userLogin = (name) => ({type: USER_LOGIN, name});

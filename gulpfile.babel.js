@@ -128,6 +128,22 @@ gulp.task(
 		watchClient
 	));
 
+	gulp.task(
+		"client:test",
+		gulp.series(
+			"client:build",
+			testClient
+		));
+
+	gulp.task(
+		"client:test:dev",
+		gulp.series(
+			"client:build",
+			gulp.parallel(
+				watchClient,
+				runClientTests
+			)));
+
 function buildClient(cb) {
 	webpack(webpackConfig, (err, stats) => {
 		if (err) {
@@ -150,6 +166,27 @@ function watchClient() {
 
 	server.listen(8080, () => {});
 }
+
+function testClient(cb) {
+	child_process.exec("node ./tests.js", (err, stdout, stderr) => {
+		console.log(stdout);
+		console.error(stderr);
+
+		if (err) {
+			cb(new $.util.PluginError("testClient", "Tests failed"));
+		} else {
+			cb();
+		}
+	});
+}
+
+function runClientTests() {
+	return $.nodemon({
+		script: "./tests.js",
+		watch: "build"
+	});
+}
+
 
 // -----------------------------------
 // Other Tasks

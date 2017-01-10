@@ -1,9 +1,5 @@
-console.log('Server side: ')
-
-describe("Something", () => {
-	it("works", () => expect(true).toBe(true));
-	it("doesn't work", () => expect(true).toBe(true));
-});
+console.log(" ")
+console.log('Client side: ')
 
 describe("User authentication", () => {
 	it("redirects user to oauth", () => expect(true).toBe(true));

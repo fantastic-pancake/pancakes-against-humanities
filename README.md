@@ -30,5 +30,21 @@ A pancake twist of [Cards Against Humanity](https://www.cardsagainsthumanity.com
 
   ```gulp dev```
 
+- To run unit tests
+
+  - For server
+
+    ```gulp server:test```
+
+  - For client
+
+    ```gulp client:test```
+
+  - For both
+     - Note: failing test in server will prevent client tests from running
+
+    ```gulp test```
+
+
 ## API
 - Coming soon...

@@ -32,3 +32,8 @@ button:hover {
 button:focus {
 	outline:0;
 }
+
+button a {
+	text-decoration: none;
+	color: black;
+}

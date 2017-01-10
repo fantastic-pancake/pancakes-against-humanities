@@ -13,6 +13,7 @@ class AppContainer extends Component {
 				<h1 className="title">Cards Against Humanity</h1>
 				<button onClick={this._click.bind(this)}>Log In</button>
 				<button onClick={this._click.bind(this)}>How to Play</button>
+				<button onClick={this._click.bind(this)}>How to Play!</button>
 			</section>
 		);
 	}

@@ -78,7 +78,7 @@ function runServer() {
 }
 
 function testServer(cb) {
-	child_process.exec("node ./tests.js", (err, stdout, stderr) => {
+	child_process.exec("node ./tests/server.js", (err, stdout, stderr) => {
 		console.log(stdout);
 		console.error(stderr);
 
@@ -92,7 +92,7 @@ function testServer(cb) {
 
 function runServerTests() {
 	return $.nodemon({
-		script: "./tests.js",
+		script: "./tests/server.js",
 		watch: "build"
 	});
 }
@@ -128,21 +128,22 @@ gulp.task(
 		watchClient
 	));
 
-	gulp.task(
-		"client:test",
-		gulp.series(
-			"client:build",
-			testClient
-		));
+gulp.task(
+	"client:test",
+	gulp.series(
+		"client:build",
+		compileClientTests,
+		testClient
+	));
 
-	gulp.task(
-		"client:test:dev",
-		gulp.series(
-			"client:build",
-			gulp.parallel(
-				watchClient,
-				runClientTests
-			)));
+// gulp.task(
+// 	"client:test:dev",
+// 	gulp.series(
+// 		"client:build",
+// 		gulp.parallel(
+// 			watchClient,
+// 			runClientTests
+// 		)));
 
 function buildClient(cb) {
 	webpack(webpackConfig, (err, stats) => {
@@ -152,9 +153,20 @@ function buildClient(cb) {
 		}
 
 		console.log(stats.toString(consoleStats));
+		compileClientTests()
 		cb();
 	});
 }
+
+function compileClientTests() {
+	return gulp.src("./src/client/**/testClient.js")
+		.pipe($.changed("./build"))
+		.pipe($.sourcemaps.init())
+		.pipe($.babel())
+		.pipe($.sourcemaps.write(".", {sourceRoot: path.join(__dirname, "src", "client")}))
+		.pipe(gulp.dest("./build"));
+}
+
 
 function watchClient() {
 	const compiler = webpack(webpackConfig);
@@ -168,7 +180,7 @@ function watchClient() {
 }
 
 function testClient(cb) {
-	child_process.exec("node ./tests.js", (err, stdout, stderr) => {
+	child_process.exec("node ./tests/client.js", (err, stdout, stderr) => {
 		console.log(stdout);
 		console.error(stderr);
 
@@ -180,15 +192,16 @@ function testClient(cb) {
 	});
 }
 
-function runClientTests() {
-	return $.nodemon({
-		script: "./tests.js",
-		watch: "build"
-	});
-}
+// function runClientTests() {
+// 	return $.nodemon({
+// 		script: "./tests/client.js",
+// 		watch: "public/build"
+// 	});
+// }
 
 
 // -----------------------------------
 // Other Tasks
 gulp.task("dev", gulp.parallel("server:dev", "client:dev"));
 gulp.task("build", gulp.parallel("server:build", "client:build"));
+gulp.task("test", gulp.series("server:test", "client:test"))

@@ -9,7 +9,7 @@ class AppContainer extends Component {
 
 	render() {
 		return (
-			<section>
+			<section className="container">
 				<h1>Hello World: SADSAFSAdd</h1>
 				<button onClick={this._click.bind(this)}>I am button plz click</button>
 			</section>

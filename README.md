@@ -1,7 +1,32 @@
-## A Basic Starting Kit 
+# Pancakes Against Humanity
 
-To use this starter kit, execute "npm install" from the command line inside of this folder in order to pull down all required packages. You will also want to have "gulp-cli" installed globally, which can be done by executing:
+## Motivation
+A pancake twist of [Cards Against Humanity](https://www.cardsagainsthumanity.com/) where users can play one another remotely using pancake themed cards.
 
-npm install -g gulp-cli
+## Tech
+- HTML5/CSS3
+- React/Redux
+- Node/Express
+- Websockets
 
-In your command line or terminal.
+## How to play
+- Navigate to (deploy link here) to play now
+- Read through [Official Rules](http://s3.amazonaws.com/cah/CAH_Rules.pdf) if unfamiliar with gameplay.
+
+## Develop
+- Clone this repo, then navigate to the cloned folder on the command line, and run
+
+  ```npm install```
+
+- Next, install gulp-cli globally if not already installed
+
+  ```npm install -g gulp-cli```
+
+- Run build and start development mode by running
+
+  ```gulp build```
+
+  ```gulp dev```
+
+## API
+- Coming soon...

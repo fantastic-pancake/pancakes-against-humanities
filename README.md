@@ -6,8 +6,18 @@ A pancake twist of [Cards Against Humanity](https://www.cardsagainsthumanity.com
 ## How to play
 - Navigate to (deploy link here) to play now
 - Login through Facebook OAuth
-- Read through [Official Rules](http://s3.amazonaws.com/cah/CAH_Rules.pdf) if unfamiliar with gameplay.
 - Join or create room
+- See [Official Rules](http://s3.amazonaws.com/cah/CAH_Rules.pdf) for an in-depth explaination. The basic idea is to:
+  - Have each player draw ten white cards
+  - Select one player to be the Card Czar
+  - This person draws a black card, which contains a question or fill-in-the-blank phrase
+  - All other players select one of their white cards to answer the question or fill in the blank
+    - Some black cards say "pick two", in which case all other players submit two white cards, specifying the order in which they are to be used
+  - The Card Czar displays all submitted cards, and chooses the white card containing the funniest response
+  - The user who submitted the chosen white card recieves one Awesome Point
+  - A new round begins
+    - Another player becomes the Card Czar
+    - Everyone draws white cards until they once again have ten.
 
 ## Tech
 - HTML5/CSS3

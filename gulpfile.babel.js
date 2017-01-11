@@ -38,6 +38,15 @@ gulp.task(
 	));
 
 gulp.task(
+	"server:test:dev",
+	gulp.series(
+		"server:build",
+		gulp.parallel(
+			watchServer,
+			runServerTests
+		)));
+
+gulp.task(
 	"server:test",
 	gulp.series(
 		"server:build",
@@ -47,7 +56,7 @@ gulp.task(
 gulp.task(
 	"server:test:dev",
 	gulp.series(
-		"server:build",
+		"server:build", 
 		gulp.parallel(
 			watchServer,
 			runServerTests
@@ -199,9 +208,9 @@ function testClient(cb) {
 // 	});
 // }
 
-
+ 
 // -----------------------------------
 // Other Tasks
 gulp.task("dev", gulp.parallel("server:dev", "client:dev"));
 gulp.task("build", gulp.parallel("server:build", "client:build"));
-gulp.task("test", gulp.series("server:test", "client:test"))
+gulp.task("test", gulp.parallel("server:test:dev", "client:test"))

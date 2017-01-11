@@ -1,6 +1,8 @@
 import './white-card.scss';
 import React, {Component} from "react";
 import ReactDOM from 'react-dom';
+import {connect} from 'react-redux';
+import actions from '../../../../actions/actions';
 
 class WhiteCard extends Component {
 	componentDidMount() {
@@ -15,18 +17,16 @@ class WhiteCard extends Component {
 	}
 
 	_click(event) {
-		let card = event.target.innerHTML
-		console.log(card);
-		this.props.clickedCard(card)
+		this.props.dispatch(actions.whiteCardClickSuccess(event.target.innerHTML));
 	}
 
 	render() {
 		var array = ['Geeese.', 'Doo-doo.', 'Police brutality.', 'Hillary Clinton\`s death stare.', 'My soul.', 'Beefin\' over turf.', 'Teenage pregnancy.', 'Becoming a blueberry.', 'The Force.', 'Sweet, sweet vengeance.'];
 		var cards = array.map((card, key) => {
 			return (
-				<div onClick={this._click.bind(this)} key={key} name="card" className="white-card" id={key}>
+				<a key={key} href="#/result" onClick={this._click.bind(this)}  className="white-card" id={key}>
 					{card}
-				</div>
+				</a>
 			);
 		});
 		return (
@@ -37,4 +37,11 @@ class WhiteCard extends Component {
 	}
 }
 
-export default WhiteCard;
+const mapStateToProps = function (state, props) {
+	return {
+		
+	};
+};
+
+var Container = connect(mapStateToProps)(WhiteCard);
+module.exports = Container;

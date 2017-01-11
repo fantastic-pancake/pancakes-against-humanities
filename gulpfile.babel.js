@@ -38,6 +38,15 @@ gulp.task(
 	));
 
 gulp.task(
+	"server:test:dev",
+	gulp.series(
+		"server:build",
+		gulp.parallel(
+			watchServer,
+			runServerTests
+		)));
+
+gulp.task(
 	"server:test",
 	gulp.series(
 		"server:build",
@@ -47,7 +56,7 @@ gulp.task(
 gulp.task(
 	"server:test:dev",
 	gulp.series(
-		"server:build",
+		"server:build", 
 		gulp.parallel(
 			watchServer,
 			runServerTests
@@ -78,7 +87,7 @@ function runServer() {
 }
 
 function testServer(cb) {
-	child_process.exec("node ./tests.js", (err, stdout, stderr) => {
+	child_process.exec("node ./tests/server.js", (err, stdout, stderr) => {
 		console.log(stdout);
 		console.error(stderr);
 
@@ -92,7 +101,7 @@ function testServer(cb) {
 
 function runServerTests() {
 	return $.nodemon({
-		script: "./tests.js",
+		script: "./tests/server.js",
 		watch: "build"
 	});
 }
@@ -128,6 +137,23 @@ gulp.task(
 		watchClient
 	));
 
+gulp.task(
+	"client:test",
+	gulp.series(
+		"client:build",
+		compileClientTests,
+		testClient
+	));
+
+// gulp.task(
+// 	"client:test:dev",
+// 	gulp.series(
+// 		"client:build",
+// 		gulp.parallel(
+// 			watchClient,
+// 			runClientTests
+// 		)));
+
 function buildClient(cb) {
 	webpack(webpackConfig, (err, stats) => {
 		if (err) {
@@ -136,9 +162,20 @@ function buildClient(cb) {
 		}
 
 		console.log(stats.toString(consoleStats));
+		compileClientTests()
 		cb();
 	});
 }
+
+function compileClientTests() {
+	return gulp.src("./src/client/**/testClient.js")
+		.pipe($.changed("./build"))
+		.pipe($.sourcemaps.init())
+		.pipe($.babel())
+		.pipe($.sourcemaps.write(".", {sourceRoot: path.join(__dirname, "src", "client")}))
+		.pipe(gulp.dest("./build"));
+}
+
 
 function watchClient() {
 	const compiler = webpack(webpackConfig);
@@ -151,7 +188,29 @@ function watchClient() {
 	server.listen(8080, () => {});
 }
 
+function testClient(cb) {
+	child_process.exec("node ./tests/client.js", (err, stdout, stderr) => {
+		console.log(stdout);
+		console.error(stderr);
+
+		if (err) {
+			cb(new $.util.PluginError("testClient", "Tests failed"));
+		} else {
+			cb();
+		}
+	});
+}
+
+// function runClientTests() {
+// 	return $.nodemon({
+// 		script: "./tests/client.js",
+// 		watch: "public/build"
+// 	});
+// }
+
+ 
 // -----------------------------------
 // Other Tasks
 gulp.task("dev", gulp.parallel("server:dev", "client:dev"));
 gulp.task("build", gulp.parallel("server:build", "client:build"));
+gulp.task("test", gulp.parallel("server:test:dev", "client:test"))

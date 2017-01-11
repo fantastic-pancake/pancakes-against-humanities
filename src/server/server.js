@@ -1,12 +1,20 @@
 import express from "express";
 import http from "http";
-
+import socket_io from "socket.io";
+import cors from 'cors';
 import {isDevelopment} from "./settings";
 
 // ----------------------
 // Setup
 const app = express();
+app.use(cors());
 const server = new http.Server(app);
+
+var io = socket_io(server);
+var prettyjson = require('prettyjson')
+var options = {
+  keysColor: 'white',
+};
 
 // ----------------------
 // Configuration
@@ -23,6 +31,20 @@ app.get("*", (req, res) => {
 		useExternalStyles,
 		scriptRoot
 	});
+});
+
+io.on('connection', function (socket) {
+    console.log('Client connected')
+		io.emit('message', {message: "message sent!!"})
+    console.log(prettyjson.render(socket.adapter.rooms, options));
+    socket.on('test', function(message) {
+        console.log('Received message:', message);
+        socket.broadcast.emit('message', message);
+    });
+		socket.on('clicked', function(message) {
+				console.log('Received message:', message);
+				socket.broadcast.emit('message', message);
+		});
 });
 
 // ----------------------

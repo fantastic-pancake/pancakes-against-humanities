@@ -1,5 +1,6 @@
 import "./game.scss";
 import React, {Component} from "react";
+
 var socket = io.connect();
 import BlackCardContainer from './black-card-container/black-card-container';
 import WhiteCardContainer from './white-card-container/white-card-container';
@@ -13,9 +14,9 @@ class Game extends Component {
 		socket.on('message', (message) => console.log(message));
 	}
 
-	clickedCard() {
-		socket.emit("clicked", "card clicked");
-		
+	clickedCard(card) {
+		socket.emit("clicked", card.concat(" card clicked"));
+
 	}
 
 	render() {
@@ -24,7 +25,7 @@ class Game extends Component {
 				<div className="center">
 					<a href="#/"><button className="nav">Back to Home</button></a>
 					<BlackCardContainer />
-					<WhiteCardContainer />
+					<WhiteCardContainer clickedCard={this.clickedCard}/>
 				</div>
 			</section>
 		);

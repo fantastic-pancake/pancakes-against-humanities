@@ -1,6 +1,6 @@
 import express from "express";
 import http from "http";
-import socket_io from"socket.io";
+import socket_io from "socket.io";
 import cors from 'cors';
 import {isDevelopment} from "./settings";
 

@@ -15,7 +15,9 @@ class WhiteCard extends Component {
 	}
 
 	_click(event) {
-		console.log(event.target.innerHTML);
+		let card = event.target.innerHTML
+		console.log(card);
+		this.props.clickedCard(card)
 	}
 
 	render() {
@@ -28,7 +30,7 @@ class WhiteCard extends Component {
 			);
 		});
 		return (
-			<div className="white-card-container"> 
+			<div className="white-card-container">
 				{cards}
 			</div>
 		);

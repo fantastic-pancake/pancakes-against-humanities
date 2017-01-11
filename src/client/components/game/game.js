@@ -25,7 +25,7 @@ class Home extends Component {
 						Police brutality.
 					</div>
 					<div className="white-card">
-						Hillary Clinton's death stare.
+						Hillary Clinton&#8217;s death stare.
 					</div>
 					<div className="white-card">
 						My soul.

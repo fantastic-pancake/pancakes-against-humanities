@@ -30,7 +30,7 @@ class WhiteCard extends Component {
 			);
 		});
 		return (
-			<div className="white-card-container"> 
+			<div className="white-card-container">
 				{cards}
 			</div>
 		);

@@ -3,7 +3,7 @@ const Jasmine = require("jasmine");
 
 const tests = new Jasmine();
 tests.loadConfig({
-	spec_dir: "./build",
+	spec_dir: "./public/build",
 	spec_files: ["**/__tests/*.js"]
 });
 

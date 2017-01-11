@@ -41,6 +41,10 @@ io.on('connection', function (socket) {
         console.log('Received message:', message);
         socket.broadcast.emit('message', message);
     });
+		socket.on('clicked', function(message) {
+				console.log('Received message:', message);
+				socket.broadcast.emit('message', message);
+		});
 });
 
 // ----------------------

@@ -1,5 +1,6 @@
 import "./game.scss";
 import React, {Component} from "react";
+import BlackCardContainer from './black-card-container/black-card-container';
 import WhiteCardContainer from './white-card-container/white-card-container';
 
 class Game extends Component {
@@ -11,12 +12,8 @@ class Game extends Component {
 		return (
 			<section className="game-container">
 				<div className="center">
-					<button className="nav"><a href="#/">Back to Home</a></button>
-					<div className="black-card-container">
-						<div>
-							What did Vin Diesel eat for dinner?
-						</div>
-					</div>
+					<a href="#/"><button className="nav">Back to Home</button></a>
+					<BlackCardContainer />
 					<WhiteCardContainer />
 				</div>
 			</section>

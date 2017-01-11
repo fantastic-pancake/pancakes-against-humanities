@@ -2,9 +2,9 @@ import "./white-card-container.scss";
 import React, {Component} from "react";
 import WhiteCard from './white-card/white-card';
 
-class whiteCardContainer extends Component {
+class WhiteCardContainer extends Component {
 	componentDidMount() {
-		console.log("in whitecard");
+		console.log("in whitecard-container");
 	}
 
 	render() {
@@ -16,4 +16,4 @@ class whiteCardContainer extends Component {
 	}
 }
 
-export default whiteCardContainer;
+export default WhiteCardContainer;

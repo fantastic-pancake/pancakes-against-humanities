@@ -1,0 +1,39 @@
+.title {
+	font-size: 50px;
+}
+
+.home-container {
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+button {
+	min-width: 200px;
+	-webkit-border-radius: 6;
+	-moz-border-radius: 6;
+	border-radius: 5px;
+	color: #000000;
+	font-size: 25px;
+	background: #ffffff;
+	padding: 10px 20px 10px 20px;
+	border: solid #000000 2px;
+	text-decoration: none;
+}
+
+button:hover {
+	background: #d3d5d6;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+button:focus {
+	outline:0;
+}
+
+button a {
+	text-decoration: none;
+	color: black;
+}

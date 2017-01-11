@@ -2,9 +2,12 @@ $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome";
 
 body {
-	background: #eee;
+	min-height: 100%;
+	background: #000;
+	font-family: 'Roboto', sans-serif;
+	color: #FFF;
+}
 
-	h1 {
-		color: blue;
-	}
+html {
+	min-height: 100%;
 }

@@ -9,14 +9,20 @@ class whiteCard extends Component {
 	}
 
 	expandUp() {
-		ReactDOM.findDOMNode(this).classList.add('slideExpandUp');
+		for (let i = 0; i < ReactDOM.findDOMNode(this).childNodes.length; i++) {
+			ReactDOM.findDOMNode(this).childNodes[i].classList.add('floating');
+		}
+	}
+
+	_click() {
+		console.log("CLICKED");
 	}
 
 	render() {
 		var array = ['Geeese.', 'Doo-doo.', 'Police brutality.', 'Hillary Clinton\`s death stare.', 'My soul.', 'Beefin\' over turf.', 'Teenage pregnancy.', 'Becoming a blueberry.', 'The Force.', 'Sweet, sweet vengeance.'];
 		var cards = array.map((card, key) => {
 			return (
-				<div key={key} className="white-card" id={key}>
+				<div onClick={this._click.bind(this)} key={key} className="white-card" id={key}>
 					{card}
 				</div>
 			);

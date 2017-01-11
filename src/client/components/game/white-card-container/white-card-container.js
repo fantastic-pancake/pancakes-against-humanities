@@ -10,7 +10,7 @@ class WhiteCardContainer extends Component {
 	render() {
 		return (
 			<section className="white-container">
-				<WhiteCard />
+				<WhiteCard clickedCard={this.props.clickedCard}/>
 			</section>
 		);
 	}

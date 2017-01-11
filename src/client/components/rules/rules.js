@@ -11,9 +11,9 @@ class Rules extends Component {
 
 	render() {
 		return (
-			<section>
+			<section className="rules-container">
 				<h1 className="title">How to Play</h1>
-				<div className="rules">
+				<div className="rule-text">
 					<h2>Basic Rules</h2>
 					<p>The person who most recently pooped begins as the Card Czar and plays a Black Card. The Card Czar reads the question or fill-in-the-
 					blank phrase on the Black Card out loud.</p>

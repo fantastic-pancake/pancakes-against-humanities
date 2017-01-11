@@ -1,13 +1,21 @@
 import express from "express";
+const router = express.Router()
 import http from "http";
 import socket_io from "socket.io";
 import cors from 'cors';
 import {isDevelopment} from "./settings";
+import mongoose from'mongoose';
+var UserEnd = require('./UserEnd')
+
+require("dotenv").config({silent: true});
+var DATABASE_URI = process.env.DATABASE_URI
+var TOKENSECRET = process.env.SECRET
 
 // ----------------------
 // Setup
 const app = express();
 app.use(cors());
+app.use('/user', UserEnd);
 const server = new http.Server(app);
 
 var io = socket_io(server);
@@ -49,7 +57,16 @@ io.on('connection', function (socket) {
 
 // ----------------------
 // Startup
-const port = process.env.PORT || 3000;
-server.listen(port, () => {
-	console.log(`Started http server on ${port}`);
-});
+// const port = process.env.PORT || 3000;
+// server.listen(port, () => {
+// 	console.log(`Started http server on ${port}`);
+// });
+console.log("database URI ", process.env.DATABASE_URI)
+mongoose.connect(process.env.DATABASE_URI || 'mongodb://<database name>').then(function() {
+  const PORT = process.env.PORT || 3000
+  server.listen(PORT, () => {
+		console.log(`Started http server on ${PORT}`);
+	});
+}).catch(function(error) {
+  console.log("Server error: ", error)
+})

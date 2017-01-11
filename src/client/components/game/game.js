@@ -11,6 +11,7 @@ class Game extends Component {
 		return (
 			<section className="game-container">
 				<div className="center">
+					<button className="nav"><a href="#/">Back to Home</a></button>
 					<div className="black-card-container">
 						<div>
 							What did Vin Diesel eat for dinner?

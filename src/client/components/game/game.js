@@ -31,7 +31,7 @@ class Home extends Component {
 						My soul.
 					</div>
 					<div className="white-card">
-						Beefin' over turf.
+						Beefin&#8217; over turf.
 					</div>
 					<div className="white-card">
 						Teenage pregnancy.

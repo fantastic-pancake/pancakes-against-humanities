@@ -196,7 +196,115 @@ export function makeDiffScalar(before, after) {
 }
 
 export function mergeDiff(base, diff, location = "") {
-	return base;
+	if (diff == null) 
+		return null;
+	
+
+	if (diff.hasOwnProperty("$remove")) 
+		return undefined;
+	
+
+	if (diff.hasOwnProperty("$set")) 
+		return diff.$set; //shortcut the entire merging algorithm and just set whatever it says to set to this property or value
+	
+
+	if (diff.hasOwnProperty("$splice")) {
+		const arr = base.slice(); // copy the array
+		arr.splice(...diff.$splice); // splice operation returns the arguments needed to be passed into diff itself
+		return arr;
+	}
+
+	if (diff.hasOwnProperty("$update")) {
+		const updateItems = diff.$update;
+		const idOrder = diff.ids;
+
+		if (idOrder) {
+			const result = new Array(idOrder.length); // making a new array and prefilling it with the x amount of items where x amount of items is the id order
+			
+			// take all of the old items and were turning it in to an object where their ids are the keys to everything
+			const oldItems = !base
+				? {}
+				: base.reduce((obj, item) => {
+					obj[item.id] = item;
+					return obj;
+				}, {});
+
+			for (let i = 0; i < idOrder.length; i++) {
+				const id = idOrder[i];
+
+				// if this item was not updated, then go ahead and copy out the old items at id into the result at i
+				// this handles reordering items that haven't changed
+				if (!updateItems.hasOwnProperty(id)) {
+					result[i] = oldItems[id];
+					continue;
+				}
+
+				// if there was a change, so now we have to recursively merge that object from the update object into our old object,
+				// and then we have to set that on the result
+				const newItem = mergeDiff(oldItems[id], updateItems[id]);
+				newItem.id = id; // because the id property is chopped off
+				result[i] = newItem;
+			}
+
+			return result;
+		} else {
+			// if there's no id order meaning there was no reordering of the elements in the array
+			// so we construct a new array, loop through the old items
+			// and then check to seeif any of those items were updated
+			// if they were, merge them
+			// if they weren't, just return the old item
+			const result = new Array(base.length);
+
+			for (let i = 0; i < base.length; i++) {
+				const item = base[i];
+				result[i] = updateItems.hasOwnProperty(item.id)
+					? mergeDiff(base[i], updateItems[item.id])
+					: base[i];
+			}
+
+			return result;
+		}
+	}
+
+	if (_.isArray(diff)) {
+		return diff;
+	}
+
+	if (_.isObject(diff)) {
+		if (base != null && !_.isObject(base)) {
+			throw new Error(`${location}: you can't change the type of a value`);
+		}
+
+		// if the base is null, then just replace it with whatever value came from diff
+		if (!base) {
+			return diff;
+		}
+
+		const copy = {...base};
+
+		// recursively loop over the object hierarchy and merging the diff on every matching key
+		for (let key in diff) {
+			if (!diff.hasOwnProperty(key)) {
+				continue;
+			}
+
+			const value = diff[key];
+			const result = mergeDiff(copy[key], value, `${location}.${key}`);
+
+			// if it encountered a $remove
+			if (typeof(result) == "undefined") {
+				delete copy[key];
+			} else {
+				copy[key] = result;
+			}
+		}
+
+		return copy;
+	}
+
+	// if we made it all the way down here
+	// merge the scalars - if it's just a number or a string, just return the diff - replace whatever was the old value with the new value
+	return diff;
 }
 
 

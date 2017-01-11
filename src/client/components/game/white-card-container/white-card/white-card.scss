@@ -1,0 +1,68 @@
+.white-card {
+	width: 200px;
+    text-align: left;
+    font-size: 20px;
+    height: 275px;
+    border: 1px solid white;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 20px 0px 0px 15px;
+    background-color: white;
+    color: black;
+    margin: 10px auto;
+}
+
+.white-card:hover {
+	box-shadow: 15px 15px 15px gray;
+	cursor: pointer;
+}
+
+[id="0"] {
+	-webkit-animation-delay: .2s;
+	animation-delay: .2s;
+}
+
+[id="1"] {
+	-webkit-animation-delay: .4s;
+	animation-delay: .4s;
+}
+
+[id="2"] {
+	-webkit-animation-delay: .6s;
+	animation-delay: .6s;
+}
+
+[id="3"] {
+	-webkit-animation-delay: 8s;
+	animation-delay: .8s;
+}
+
+[id="4"] {
+	-webkit-animation-delay: 1.0s;
+	animation-delay: 1.0s;
+}
+
+[id="9"] {
+	-webkit-animation-delay: 2.0s;
+	animation-delay: 2.0s;
+}
+
+[id="8"] {
+	-webkit-animation-delay: 1.8s;
+	animation-delay: 1.8s;
+}
+
+[id="7"] {
+	-webkit-animation-delay: 1.6s;
+	animation-delay: 1.6s;
+}
+
+[id="6"] {
+	-webkit-animation-delay: 1.4s;
+	animation-delay: 1.4s;
+}
+
+[id="5"] {
+	-webkit-animation-delay: 1.2s;
+	animation-delay: 1.2s;
+}

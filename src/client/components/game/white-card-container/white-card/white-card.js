@@ -15,9 +15,9 @@ class WhiteCard extends Component {
 	}
 
 	_click(event) {
-		let card = event.target.innerHTML
+		let card = event.target.innerHTML;
 		console.log(card);
-		this.props.clickedCard(card)
+		this.props.clickedCard(card);
 	}
 
 	render() {

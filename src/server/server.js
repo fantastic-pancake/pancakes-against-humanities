@@ -6,6 +6,7 @@ import cors from 'cors';
 import {isDevelopment} from "./settings";
 import mongoose from'mongoose';
 var UserEnd = require('./UserEnd')
+var FB = require('./FB');
 
 require("dotenv").config({silent: true});
 var DATABASE_URI = process.env.DATABASE_URI
@@ -16,6 +17,7 @@ var TOKENSECRET = process.env.SECRET
 const app = express();
 app.use(cors());
 app.use('/user', UserEnd);
+app.use('/auth', FB)
 const server = new http.Server(app);
 
 var io = socket_io(server);

@@ -1,15 +1,24 @@
 import "./game.scss";
 import React, {Component} from "react";
+var socket = io.connect();
 
 class Home extends Component {
 	componentDidMount() {
 		console.log("IN GAME");
+		// var socket = io.connect();
+		socket.emit('test', "game component mounted");
+		console.log("socket test sent");
+		socket.on('message', (message) => console.log(message));
+	}
+
+	clickedCard() {
+		socket.emit("clicked", "card clicked");
 	}
 
 	render() {
 		return (
 			<section className="game-container">
-				<div className="black-card-container">
+				<div className="black-card-container" onClick={this.clickedCard.bind(this)}>
 					<div>
 						What did Vin Diesel eat for dinner?
 					</div>

@@ -47,6 +47,7 @@ io.on('connection', function (socket) {
     console.log('Client connected')
 		io.emit('message', {message: "message sent!!"})
     console.log(prettyjson.render(socket.adapter.rooms, options));
+    // console.log(socket.adapter.sids);
     socket.on('test', function(message) {
         console.log('Received message:', message);
         socket.broadcast.emit('message', message);
@@ -57,12 +58,7 @@ io.on('connection', function (socket) {
 		});
 });
 
-// ----------------------
-// Startup
-// const port = process.env.PORT || 3000;
-// server.listen(port, () => {
-// 	console.log(`Started http server on ${port}`);
-// });
+
 console.log("database URI ", process.env.DATABASE_URI)
 mongoose.connect(process.env.DATABASE_URI || 'mongodb://<database name>').then(function() {
   const PORT = process.env.PORT || 3000

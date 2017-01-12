@@ -8,6 +8,7 @@ import WhiteCardContainer from './white-card-container/white-card-container';
 
 class Game extends Component {
 	componentDidMount() {
+		// socket = io.connect();
 		console.log("IN GAME");
 		// var socket = io.connect();
 		socket.emit('test', "game component mounted");

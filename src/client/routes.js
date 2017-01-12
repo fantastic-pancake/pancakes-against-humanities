@@ -5,7 +5,8 @@ import store from './store';
 import AppContainer from "./components/app";
 import Home from './components/home/home';
 import Rules from './components/rules/rules';
-import Game from './components/game/game';
+import Czar from './components/card-czar/card-czar';
+import Game from './components/other-players/game';
 import Result from './components/result/result';
 
 export default function() {
@@ -15,6 +16,7 @@ export default function() {
 				<Route path="/" component={AppContainer}>
 					<IndexRoute component={Home} />
 					<Route path="/rules" component={Rules} />
+					<Route path="/czar" component={Czar} />
 					<Route path="/game" component={Game} />
 					<Route path="/result" component={Result} />
 				</Route>

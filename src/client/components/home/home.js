@@ -11,7 +11,7 @@ class Home extends Component {
 			<section className="home-container">
 				<div className="center title-container">
 					<h1 className="title">Cards Against Humanity</h1>
-					<a href="#/game"><button>Log In</button></a>
+					<a href="#/profile"><button>Log In</button></a>
 					<a href="#/rules"><button>How to Play</button></a>
 				</div>
 			</section>

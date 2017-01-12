@@ -24,6 +24,11 @@
     -ms-user-select: none; /* IE10+ */
 }
 
+.click-link {
+    text-decoration:none;
+    color:white;
+}
+
 .black-card:hover {
     cursor:pointer;
 }

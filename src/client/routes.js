@@ -8,6 +8,7 @@ import Rules from './components/rules/rules';
 import Czar from './components/card-czar/card-czar';
 import Game from './components/other-players/game';
 import Result from './components/result/result';
+import Profile from './components/profile/profile';
 
 export default function() {
 	return (
@@ -19,6 +20,7 @@ export default function() {
 					<Route path="/czar" component={Czar} />
 					<Route path="/game" component={Game} />
 					<Route path="/result" component={Result} />
+					<Route path="/profile" component={Profile} />
 				</Route>
 			</Router>
 		</Provider>

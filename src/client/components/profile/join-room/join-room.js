@@ -1,9 +1,8 @@
-import "./profile.scss";
 import React, {Component} from "react";
 
-class Home extends Component {
+class JoinRoom extends Component {
 	componentDidMount() {
-		console.log("IN profile");
+		console.log("IN Room");
 	}
 
 	render() {
@@ -12,13 +11,12 @@ class Home extends Component {
 				<a href="#/"><button className="log-out">Log Out</button></a>
 				<div className="center title-container">
 					
-					<h1 className="title">Welcome to your profile!</h1>
-					<a href="#/room"><button>Create a Room</button></a>
-					<a href="#/join-room"><button>Join a Room</button></a>
+					<h1 className="title">Please select an available room to join!</h1>
+					<a href="#/room"><button>Join Room</button></a>
 				</div>
 			</section>
 		);
 	}
 }
 
-export default Home;
+export default JoinRoom;

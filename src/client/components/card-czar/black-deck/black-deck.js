@@ -7,7 +7,7 @@ class BlackDeck extends Component {
 	}
 
 	_click() {
-		console.log("CLICKED")
+		console.log("CLICKED");
 	}
 
 	render() {

@@ -1,6 +1,5 @@
 import "./game.scss";
 import React, {Component} from "react";
-
 var socket = io.connect();
 import BlackCardContainer from './black-card-container/black-card-container';
 import WhiteCardContainer from './white-card-container/white-card-container';
@@ -18,7 +17,6 @@ class Game extends Component {
 
 	clickedCard(card) {
 		socket.emit("clicked", card.concat(" card clicked"));
-
 	}
 
 	render() {

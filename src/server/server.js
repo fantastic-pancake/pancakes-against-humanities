@@ -35,16 +35,25 @@ app.get("*", (req, res) => {
 
 io.on('connection', function (socket) {
     console.log('Client connected')
-		io.emit('message', {message: "message sent!!"})
+	io.emit('message', {message: "message sent!!"})
     console.log(prettyjson.render(socket.adapter.rooms, options));
+
     socket.on('test', function(message) {
-        console.log('Received message:', message);
+    	console.log("1");
+        console.log('Received message:', message + " " + socket.id.slice(8));
         socket.broadcast.emit('message', message);
     });
-		socket.on('clicked', function(message) {
-				console.log('Received message:', message);
-				socket.broadcast.emit('message', message);
-		});
+
+	socket.on('clicked', function(message) {
+		console.log("2");
+		console.log('Received message:', message + " " + socket.id.slice(8));
+		socket.broadcast.emit('message', 	);
+		io.emit('clicked', message);
+	});
+	
+	socket.on('disconnect', function(){
+	    console.log('user disconnected');
+	});
 });
 
 // ----------------------

@@ -1,8 +1,10 @@
 import React, {Component} from "react";
+var socket = io.connect();
 
 class Room extends Component {
 	componentDidMount() {
 		console.log("IN Room");
+		socket.emit('test', "Create Room component mounted");
 	}
 
 	render() {

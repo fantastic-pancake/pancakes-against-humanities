@@ -14,7 +14,7 @@ class Home extends Component {
 					
 					<h1 className="title">Welcome to your profile!</h1>
 					<a href="#/room"><button>Create a Room</button></a>
-					<a href="#/join-room"><button>Join a Room</button></a>
+					<a href="#/czar"><button>Join a Room</button></a>
 				</div>
 			</section>
 		);

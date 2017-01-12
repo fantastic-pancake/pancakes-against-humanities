@@ -9,6 +9,8 @@ import Czar from './components/card-czar/card-czar';
 import Game from './components/other-players/game';
 import Result from './components/result/result';
 import Profile from './components/profile/profile';
+import Room from './components/profile/room/room';
+import JoinRoom from './components/profile/join-room/join-room';
 
 export default function() {
 	return (
@@ -21,6 +23,8 @@ export default function() {
 					<Route path="/game" component={Game} />
 					<Route path="/result" component={Result} />
 					<Route path="/profile" component={Profile} />
+					<Route path="/room" component={Room} />
+					<Route path="/join-room" component={JoinRoom} />
 				</Route>
 			</Router>
 		</Provider>

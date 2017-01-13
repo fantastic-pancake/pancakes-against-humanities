@@ -5,7 +5,7 @@ import { shuffle } from "../shared/utils";
 const PLACEHOLDER_REGEX = /\{\}/g;
 
 function getWhiteCardCount(text) {
-	const match = test.match(PLACEHOLDER_REGEX);
+	const match = text.match(PLACEHOLDER_REGEX);
 	if (!match) {
 		return 1;
 	}
@@ -93,7 +93,7 @@ export class CardDatabase {
  	}
 
  	drawBlackCard() {
- 		if (this._blackIndex >= this._blackDeck.length) {
+ 		if (this._blackIndex >= this._blackDeck.length) {	
  			shuffle(this._blackDeck);
  			this._blackIndex = 0;
  		}

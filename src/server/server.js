@@ -72,7 +72,7 @@ io.on('connection', function (socket) {
 
 // allow us to generate a deck of cards parsed from original json file 
 const cards = new CardDatabase();
-const setsPath = path.join(global.appRoot, "data", "sets");
+const setsPath = path.join(global.appRoot, "data", "temp");
 for (let file of fs.readdirSync(setsPath)) {
 	const setId = path.parse(file).name;
 	const setPath = path.join(setsPath, file);

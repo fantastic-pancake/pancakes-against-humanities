@@ -66,6 +66,47 @@ export class CardDatabase {
 	}
  }
 
+ // deck class
+ export class Deck {
+ 	constructor(whiteCards, blackCards) {
+ 		this._whiteDeck = whiteCards;
+ 		this._blackDeck = blackCards;
+ 		this._whiteDiscard = [];
+ 		this._blackIndex = 0; // where along that array of black cards we are currently on
+ 	}
+
+ 	drawWhiteCards(count) {
+ 		// if we reached the end of our white deck, we need to take all the cards and shuffle them
+ 		// back into our deck
+ 		// also need to check if we have enough whitecards to draw from
+ 		if (count >= this._whiteDeck.length) {
+ 			if (count >= this._whiteDeck.length + this._whiteDiscard.length) {
+ 				throw new Error(`Cannot draw ${count} cards, because there aren't enough left.`);
+ 			}
+
+ 			this._whiteDeck.push(...this._whiteDiscard);
+ 			this._whiteDiscard = [];
+ 			shuffle(this._whiteDeck);
+ 		}
+
+ 		return this._whiteDeck.splice(0, count);
+ 	}
+
+ 	drawBlackCard() {
+ 		if (this._blackIndex >= this._blackDeck.length) {
+ 			shuffle(this._blackDeck);
+ 			this._blackIndex = 0;
+ 		}
+
+ 		// continuously draw from deck
+ 		return this._blackDeck[this._blackIndex++];
+ 	}
+
+ 	discardWhiteCards(cards) {
+ 		this._whiteDiscard.push(...cards);
+ 	}
+ }
+
 
 
 

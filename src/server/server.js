@@ -10,7 +10,7 @@ import mongoose from'mongoose';
 // Parsing and creating decks server-side
 import path from "path";
 import fs from "fs";
-import {CardDatabase} from "./models/cards"; 
+import {CardDatabase} from "./models/cards";
 
 var UserEnd = require('./UserEnd')
 var FB = require('./FB');
@@ -70,7 +70,7 @@ io.on('connection', function (socket) {
 // ----------------------
 // Services
 
-// allow us to generate a deck of cards parsed from original json file 
+// allow us to generate a deck of cards parsed from original json file
 const cards = new CardDatabase();
 const setsPath = path.join(global.appRoot, "data", "temp");
 for (let file of fs.readdirSync(setsPath)) {
@@ -80,7 +80,7 @@ for (let file of fs.readdirSync(setsPath)) {
 }
 
 // TODO: test in progress
-console.log(cards.generateDecks());
+// console.log(cards.generateDecks());
 
 
 console.log("database URI ", process.env.DATABASE_URI)

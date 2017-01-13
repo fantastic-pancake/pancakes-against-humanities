@@ -33,11 +33,15 @@ passport.deserializeUser(function(id, done) {
 passport.use(new Strategy({
         clientID        : FB_CLIENT_ID,
         clientSecret    : FB_CLIENTSECRET,
-        callbackURL     : FB_CALLBACK_URL
+        callbackURL     : FB_CALLBACK_URL,
+        "profileFields": ["id", "displayName", "photos", "email"]
     },
     // facebook will send back the token and profile
     function(token, refreshToken, profile, done) {
+      console.log("TOKEN: ", token);
+      console.log("refreshToken: ", refreshToken);
       console.log("PROFILE: ", profile);
+      console.log("DONE: ", done);
       // asynchronous
       process.nextTick(function() {
         // find the user in the database based on their facebook id
@@ -59,8 +63,9 @@ passport.use(new Strategy({
             // set all of the facebook information in our user model
             newUser.facebook.id    = profile.id; // set the users facebook id
             newUser.facebook.token = token; // we will save the token that facebook provides to the user
-            newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-            newUser.facebook.email = profile.emails; // facebook can return multiple emails so we'll take the first
+            newUser.facebook.name  = profile.displayName; // look at the passport user profile to see how names are returned
+            newUser.facebook.profilePic = profile.photos[0].value // profile photo
+            newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
 
             // save our user to the database
             newUser.save(function(err) {
@@ -81,7 +86,7 @@ router.use(passport.initialize());
 router.use(passport.session());
 
 router.get('/facebook',
-  passport.authenticate('facebook', { scope : 'public_profile'}));
+  passport.authenticate('facebook', { scope : 'email'}));
 
 router.get('/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/' }),

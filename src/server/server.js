@@ -82,8 +82,7 @@ for (let file of fs.readdirSync(setsPath)) {
 // TODO: test in progress
 // console.log(cards.generateDecks());
 
-
-console.log("database URI ", process.env.DATABASE_URI)
+mongoose.Promise = global.Promise; //address depreciated mongoose library warning
 mongoose.connect(process.env.DATABASE_URI || 'mongodb://<database name>').then(function() {
   const PORT = process.env.PORT || 3000
   server.listen(PORT, () => {

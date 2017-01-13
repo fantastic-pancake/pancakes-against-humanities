@@ -50,7 +50,7 @@ export class CardDatabase {
 
 	// to generate decks
 	generateDecks(setIds = null) {
-		const sets = setIds ? setIds.map(s => this._sets[s]) : _.value(this._sets);
+		const sets = setIds ? setIds.map(s => this._sets[s]) : _.values(this._sets);
 		if (!sets.length) {
 			throw new Error("Cannot generate deck without any sets selected");
 		}

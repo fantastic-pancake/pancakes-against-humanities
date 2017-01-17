@@ -1,13 +1,32 @@
 import express from "express";
+const router = express.Router()
 import http from "http";
 import socket_io from "socket.io";
 import cors from 'cors';
 import {isDevelopment} from "./settings";
+import mongoose from'mongoose';
+
+// ---------------------
+// Parsing and creating decks server-side
+import path from "path";
+import fs from "fs";
+import {CardDatabase} from "./models/cards"; 
+
+var UserEnd = require('./UserEnd')
+var FB = require('./FB');
+
+require("dotenv").config({silent: true});
+var DATABASE_URI = process.env.DATABASE_URI
+var TOKENSECRET = process.env.SECRET
+
+
 
 // ----------------------
 // Setup
 const app = express();
 app.use(cors());
+app.use('/user', UserEnd);
+app.use('/auth', FB)
 const server = new http.Server(app);
 let whiteCards = [];
 
@@ -38,7 +57,6 @@ io.on('connection', function (socket) {
     console.log('Client connected')
 	io.emit('message', {message: "message sent!!"})
     console.log(prettyjson.render(socket.adapter.rooms, options));
-
 	socket.on('clicked', function(message) {
 		console.log("2");
 		whiteCards.push(message);
@@ -60,8 +78,27 @@ io.on('connection', function (socket) {
 });
 
 // ----------------------
-// Startup
-const port = process.env.PORT || 3000;
-server.listen(port, () => {
-	console.log(`Started http server on ${port}`);
-});
+// Services
+
+// allow us to generate a deck of cards parsed from original json file 
+const cards = new CardDatabase();
+const setsPath = path.join(global.appRoot, "data", "temp");
+for (let file of fs.readdirSync(setsPath)) {
+	const setId = path.parse(file).name;
+	const setPath = path.join(setsPath, file);
+	cards.addSet(setId, JSON.parse(fs.readFileSync(setPath, "utf-8"))); // before we return to JSON parse, we don't want any binary data - we want to load these files up as text
+}
+
+// TODO: test in progress
+console.log(cards.generateDecks());
+
+
+console.log("database URI ", process.env.DATABASE_URI)
+mongoose.connect(process.env.DATABASE_URI || 'mongodb://<database name>').then(function() {
+  const PORT = process.env.PORT || 3000
+  server.listen(PORT, () => {
+		console.log(`Started http server on ${PORT}`);
+	});
+}).catch(function(error) {
+  console.log("Server error: ", error)
+})

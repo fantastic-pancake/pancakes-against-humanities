@@ -46,7 +46,7 @@ class WhiteCard extends Component {
 
 const mapStateToProps = function (state, props) {
 	return {
-		
+
 	};
 };
 

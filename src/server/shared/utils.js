@@ -2,8 +2,8 @@
 In place shuffle for the cards (or pancakes)
  */
 
-export function shuffle(arr) {
-	let counter = arr.length;
+export function shuffle(array) {
+	let counter = array.length;
 
 	while (counter > 0) {
 		let index = Math.floor(Math.random() * counter);
@@ -14,5 +14,5 @@ export function shuffle(arr) {
 		array[index] = temp;
 	}
 
-	return arr;
+	return array;
  }

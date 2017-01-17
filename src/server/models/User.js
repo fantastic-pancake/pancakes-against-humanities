@@ -21,7 +21,8 @@ var UserSchema = new mongoose.Schema({
         id           : String,
         token        : String,
         email        : String,
-        name         : String
+        name         : String,
+        profilePic   : String
     }
 });
 

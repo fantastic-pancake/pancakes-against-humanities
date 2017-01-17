@@ -9,7 +9,7 @@ class BlackCardContainer extends Component {
 	render() {
 		return (
 			<div className="black-card-container">
-				<div>
+				<div className="cardText">
 					What did Vin Diesel eat for dinner?
 				</div>
 			</div>

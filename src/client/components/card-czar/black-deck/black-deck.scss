@@ -12,7 +12,6 @@
   	-o-background-size: cover;
   	background-size: cover;
   	background-position: center;
-    // width: 200px;
     width: 350px;
     margin: 5px 0px 0px -5px;
     text-align: left;
@@ -25,8 +24,6 @@
 }
 
 .click-me {
-    // text-align: center;
-    // margin-top: 50%;
     -webkit-user-select: none; /* Chrome/Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
@@ -37,7 +34,6 @@
     justify-content: center;
     align-items: center;
     color: #000;
-    // color: white;
     text-shadow: 0.5px 0 0 white, -0.5px 0 0 white, 0 0.5px 0 white, 0 -0.5px 0 white, 1px 1px white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white;
 }
 

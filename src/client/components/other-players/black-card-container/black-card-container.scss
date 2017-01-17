@@ -1,22 +1,14 @@
 .black-card-container {
-	// background-color: #000;
-	// background-image: url("./pancake-syrup.png") no-repeat center center;
 	background-image: url("./../../../../../public/pancake-syrup.png");
-	// background-image: url("./../../../../../public/pancakes.png");
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
 	background-position: center;
-	// width: 200px;
 	width: 350px;
   margin: 20px auto;
-  // padding: 20px 0px 0px 15px;
-	// padding: 10px;
-  // text-align: left;
   font-size: 20px;
   height: 275px;
-  // border: 1px solid white;
   border-radius: 10px;
   font-weight: bold;
 }
@@ -29,6 +21,5 @@
 	justify-content: center;
 	align-items: center;
 	color: #000;
-	// color: white;
   text-shadow: 0.5px 0 0 white, -0.5px 0 0 white, 0 0.5px 0 white, 0 -0.5px 0 white, 1px 1px white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white;
 }

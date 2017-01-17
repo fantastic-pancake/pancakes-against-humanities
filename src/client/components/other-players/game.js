@@ -10,13 +10,7 @@ class Game extends Component {
 	componentDidMount() {
 		console.log("IN GAME");
 		// var socket = io.connect();
-		socket.emit('test', "game component mounted");
-		console.log("socket test sent");
 		socket.on('message', (message) => console.log(message));
-	}
-
-	clickedCard(card) {
-		socket.emit("clicked", card.concat(" card clicked"));
 	}
 
 	render() {
@@ -29,7 +23,7 @@ class Game extends Component {
 					</div>
 					<a href="#/"><button className="nav">Back to Home</button></a>
 					<BlackCardContainer />
-					<WhiteCardContainer clickedCard={this.clickedCard}/>
+					<WhiteCardContainer />
 				</div>
 			</section>
 		);

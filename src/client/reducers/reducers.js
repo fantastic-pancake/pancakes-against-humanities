@@ -10,6 +10,7 @@ const gameReducer = (state, action) => {
 	state = Object.assign({}, copyState);
 	
 	if (action.type === actions.WHITE_CARD_CLICK_SUCCESS) {
+		state.whiteCards = [];
 		state.whiteCards = state.whiteCards.concat(action.cardValue);
 	}
 	return state;

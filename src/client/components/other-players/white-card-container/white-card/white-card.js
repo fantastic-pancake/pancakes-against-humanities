@@ -22,6 +22,7 @@ class WhiteCard extends Component {
 		let component = this;
 		socket.emit("clicked", event.target.innerHTML);
 		socket.on("clicked", function(message) {
+			console.log("dispatched " + message);
 			component.props.dispatch(actions.whiteCardClickSuccess(message));
 		});
 	}

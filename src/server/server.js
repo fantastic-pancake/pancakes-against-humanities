@@ -9,6 +9,7 @@ import {isDevelopment} from "./settings";
 const app = express();
 app.use(cors());
 const server = new http.Server(app);
+let whiteCards = [];
 
 var io = socket_io(server);
 var prettyjson = require('prettyjson')
@@ -38,20 +39,22 @@ io.on('connection', function (socket) {
 	io.emit('message', {message: "message sent!!"})
     console.log(prettyjson.render(socket.adapter.rooms, options));
 
-    socket.on('test', function(message) {
-    	console.log("1");
-        console.log('Received message:', message + " " + socket.id.slice(8));
-        socket.broadcast.emit('message', message);
-    });
-
 	socket.on('clicked', function(message) {
 		console.log("2");
+		whiteCards.push(message);
+		console.log(whiteCards);
 		console.log('Received message:', message + " " + socket.id.slice(8));
-		socket.broadcast.emit('message', 	);
-		io.emit('clicked', message);
+		io.sockets.emit('clicked', whiteCards);
+	});
+
+	socket.on('black', function(message) {
+		console.log("3");
+		console.log('Received message:', message + " " + socket.id.slice(8));
+		io.sockets.emit('black', message);
+
 	});
 	
-	socket.on('disconnect', function(){
+	socket.on('disconnect', function() {
 	    console.log('user disconnected');
 	});
 });

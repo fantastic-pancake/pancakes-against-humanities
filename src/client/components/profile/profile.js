@@ -13,8 +13,7 @@ class Home extends Component {
 				<div className="center title-container">
 					
 					<h1 className="title">Welcome to your profile!</h1>
-					<a href="#/room"><button>Create a Room</button></a>
-					<a href="#/join-room"><button>Join a Room</button></a>
+					<a href="#/room"><button>Join the Room</button></a>
 				</div>
 			</section>
 		);

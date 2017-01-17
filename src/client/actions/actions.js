@@ -16,7 +16,18 @@ const whiteCardClickError = (err) => {
 	};
 };
 
+const BLACK_CARD_CLICK_SUCCESS = 'BLACK_CARD_CLICK_SUCCESS';
+const blackCardClickSuccess = (string) => {
+	return {
+		type: BLACK_CARD_CLICK_SUCCESS,
+		string: string
+	}
+}
+
 exports.WHITE_CARD_CLICK_SUCCESS = WHITE_CARD_CLICK_SUCCESS;
 exports.whiteCardClickSuccess = whiteCardClickSuccess;
 exports.WHITE_CARD_CLICK_ERROR = WHITE_CARD_CLICK_ERROR;
 exports.whiteCardClickError = whiteCardClickError;
+
+exports.BLACK_CARD_CLICK_SUCCESS = BLACK_CARD_CLICK_SUCCESS;
+exports.blackCardClickSuccess = blackCardClickSuccess;

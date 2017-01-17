@@ -1,6 +1,9 @@
 import "./result.scss";
 import React, {Component} from "react";
 import {connect} from 'react-redux';
+import actions from '../../actions/actions';
+import io from 'socket.io-client';
+var socket = io.connect();
 
 class Result extends Component {
 	constructor(props) {
@@ -8,7 +11,7 @@ class Result extends Component {
 	}
 
 	componentDidMount() {
-		console.log("IN HOME");
+
 	}
 
 	render() {
@@ -43,6 +46,7 @@ class Result extends Component {
 
 const mapStateToProps = function (state, props) {
 	return {
+		blackCard: state.blackCard,
 		whiteCards: state.whiteCards
 	};
 };

@@ -1,13 +1,20 @@
 import "./black-deck.scss";
 import React, {Component} from "react";
+import {connect} from 'react-redux';
+import actions from '../../../actions/actions';
+import io from 'socket.io-client';
+var socket = io.connect();
 
 class BlackDeck extends Component {
 	componentDidMount() {
-		console.log("in black-card-container");
+
 	}
 
 	_click() {
-		console.log("CLICKED")
+		let component = this;
+		socket.on("clicked", function(message) {
+			component.props.dispatch(actions.whiteCardClickSuccess(message));
+		});
 	}
 
 	render() {
@@ -35,4 +42,11 @@ class BlackDeck extends Component {
 	}
 }
 
-export default BlackDeck;
+const mapStateToProps = function (state, props) {
+	return {
+		
+	};
+};
+
+var Container = connect(mapStateToProps)(BlackDeck);
+module.exports = Container;

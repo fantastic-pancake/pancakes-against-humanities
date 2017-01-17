@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+var socket = io.connect();
 
 class Room extends Component {
 	componentDidMount() {
@@ -13,6 +14,7 @@ class Room extends Component {
 					<h1 className="title">Welcome to the game room!</h1>
 					<h2>Please wait for other players to join...</h2>
 					<a href="#/game"><button>Start Game</button></a>
+					<a href="#/czar"><button>Czar</button></a>
 				</div>
 			</section>
 		);

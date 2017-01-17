@@ -28,6 +28,7 @@ app.use(cors());
 app.use('/user', UserEnd);
 app.use('/auth', FB)
 const server = new http.Server(app);
+let whiteCards = [];
 
 var io = socket_io(server);
 var prettyjson = require('prettyjson')
@@ -54,17 +55,26 @@ app.get("*", (req, res) => {
 
 io.on('connection', function (socket) {
     console.log('Client connected')
-		io.emit('message', {message: "message sent!!"})
+	io.emit('message', {message: "message sent!!"})
     console.log(prettyjson.render(socket.adapter.rooms, options));
-    // console.log(socket.adapter.sids);
-    socket.on('test', function(message) {
-        console.log('Received message:', message);
-        socket.broadcast.emit('message', message);
-    });
-		socket.on('clicked', function(message) {
-				console.log('Received message:', message);
-				socket.broadcast.emit('message', message);
-		});
+	socket.on('clicked', function(message) {
+		console.log("2");
+		whiteCards.push(message);
+		console.log(whiteCards);
+		console.log('Received message:', message + " " + socket.id.slice(8));
+		io.sockets.emit('clicked', whiteCards);
+	});
+
+	socket.on('black', function(message) {
+		console.log("3");
+		console.log('Received message:', message + " " + socket.id.slice(8));
+		io.sockets.emit('black', message);
+
+	});
+	
+	socket.on('disconnect', function() {
+	    console.log('user disconnected');
+	});
 });
 
 // ----------------------

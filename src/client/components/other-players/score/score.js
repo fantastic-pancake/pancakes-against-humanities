@@ -19,7 +19,7 @@ class Score extends Component {
 	}
 }
 
-const mapStateToProps = function (state, props) {
+const mapStateToProps = function (state) {
 	return {
 
 	};

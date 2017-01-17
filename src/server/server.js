@@ -73,7 +73,7 @@ io.on('connection', function (socket) {
 	});
 
   socket.on('test', function(message) {
-    console.log("test confirmed from ", message);
+    console.log("test confirmed from ", message, " from client: ", socket.id);
   })
 
 	socket.on('disconnect', function() {

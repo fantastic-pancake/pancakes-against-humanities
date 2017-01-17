@@ -2,8 +2,6 @@ import "./result.scss";
 import React, {Component} from "react";
 import {connect} from 'react-redux';
 // import actions from '../../actions/actions';
-// import io from 'socket.io-client';
-// var socket = io.connect();
 
 class Result extends Component {
 	// constructor(props) {
@@ -31,7 +29,7 @@ class Result extends Component {
 						<h1 className="result-title">Results</h1>
 					</div>
 					<div className="black-card-container">
-						<div>
+						<div className="cardText">
 							What did Vin Diesel eat for dinner?
 						</div>
 					</div>
@@ -44,7 +42,7 @@ class Result extends Component {
 	}
 }
 
-const mapStateToProps = function (state, props) {
+const mapStateToProps = function (state) {
 	return {
 		blackCard: state.blackCard,
 		whiteCards: state.whiteCards,

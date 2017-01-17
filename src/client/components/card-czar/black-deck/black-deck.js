@@ -2,8 +2,6 @@ import "./black-deck.scss";
 import React, {Component} from "react";
 import {connect} from 'react-redux';
 import actions from '../../../actions/actions';
-// import io from 'socket.io-client';
-// var socket = io.connect();
 
 class BlackDeck extends Component {
 	componentDidMount() {
@@ -42,7 +40,7 @@ class BlackDeck extends Component {
 	}
 }
 
-const mapStateToProps = function (state, props) {
+const mapStateToProps = function (state) {
 	return {
 		socket: state.socket
 	};

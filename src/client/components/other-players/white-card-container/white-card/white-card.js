@@ -3,8 +3,6 @@ import React, {Component} from "react";
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import actions from '../../../../actions/actions';
-// import io from 'socket.io-client';
-// var socket = io.connect();
 
 class WhiteCard extends Component {
 	componentDidMount() {
@@ -44,7 +42,7 @@ class WhiteCard extends Component {
 	}
 }
 
-const mapStateToProps = function (state, props) {
+const mapStateToProps = function (state) {
 	return {
 		socket: state.socket
 	};

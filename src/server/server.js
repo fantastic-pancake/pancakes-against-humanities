@@ -71,7 +71,11 @@ io.on('connection', function (socket) {
 		io.sockets.emit('black', message);
 
 	});
-	
+
+  socket.on('test', function(message) {
+    console.log("test confirmed from ", message);
+  })
+
 	socket.on('disconnect', function() {
 	    console.log('user disconnected');
 	});

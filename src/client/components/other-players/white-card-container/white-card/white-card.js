@@ -3,8 +3,8 @@ import React, {Component} from "react";
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import actions from '../../../../actions/actions';
-import io from 'socket.io-client';
-var socket = io.connect();
+// import io from 'socket.io-client';
+// var socket = io.connect();
 
 class WhiteCard extends Component {
 	componentDidMount() {
@@ -20,8 +20,8 @@ class WhiteCard extends Component {
 
 	_click(event) {
 		let component = this;
-		socket.emit("clicked", event.target.innerHTML);
-		socket.on("clicked", function(message) {
+		this.props.socket.emit("clicked", event.target.innerHTML);
+		this.props.socket.on("clicked", function(message) {
 			console.log("dispatched " + message);
 			component.props.dispatch(actions.whiteCardClickSuccess(message));
 		});
@@ -46,7 +46,7 @@ class WhiteCard extends Component {
 
 const mapStateToProps = function (state, props) {
 	return {
-
+		socket: state.socket
 	};
 };
 

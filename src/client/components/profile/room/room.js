@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-var socket = io.connect();
+// var socket = io.connect();
 
 class Room extends Component {
 	componentDidMount() {

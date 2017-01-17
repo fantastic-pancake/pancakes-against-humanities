@@ -1,6 +1,8 @@
 import "./game.scss";
 import React, {Component} from "react";
-var socket = io.connect();
+import {connect} from 'react-redux';
+// import io from 'socket.io-client';
+// var socket = io.connect();
 import BlackCardContainer from './black-card-container/black-card-container';
 import WhiteCardContainer from './white-card-container/white-card-container';
 import Timer from './timer/timer';
@@ -10,7 +12,8 @@ class Game extends Component {
 	componentDidMount() {
 		console.log("IN GAME");
 		// var socket = io.connect();
-		socket.on('message', (message) => console.log(message));
+		this.props.socket.on('message', (message) => console.log(message));
+		this.props.socket.emit('test', "game component mounted");
 	}
 
 	render() {
@@ -30,4 +33,13 @@ class Game extends Component {
 	}
 }
 
-export default Game;
+const mapStateToProps = function(state, props) {
+		return {
+			socket: state.socket
+		}
+}
+
+var Container = connect(mapStateToProps)(Game);
+module.exports = Container;
+
+// export default Game;

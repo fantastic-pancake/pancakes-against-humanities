@@ -2,8 +2,8 @@ import "./black-deck.scss";
 import React, {Component} from "react";
 import {connect} from 'react-redux';
 import actions from '../../../actions/actions';
-import io from 'socket.io-client';
-var socket = io.connect();
+// import io from 'socket.io-client';
+// var socket = io.connect();
 
 class BlackDeck extends Component {
 	componentDidMount() {
@@ -12,7 +12,7 @@ class BlackDeck extends Component {
 
 	_click() {
 		let component = this;
-		socket.on("clicked", function(message) {
+		this.props.socket.on("clicked", function(message) {
 			component.props.dispatch(actions.whiteCardClickSuccess(message));
 		});
 	}
@@ -29,8 +29,8 @@ class BlackDeck extends Component {
 										<div className="black-card">
 											<div  className="black-card">
 												<div className="click-me">Select a card!</div>
-											</div>	
-										</div>		
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -44,7 +44,7 @@ class BlackDeck extends Component {
 
 const mapStateToProps = function (state, props) {
 	return {
-		
+		socket: state.socket
 	};
 };
 

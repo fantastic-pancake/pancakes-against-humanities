@@ -1,17 +1,17 @@
 import "./result.scss";
 import React, {Component} from "react";
 import {connect} from 'react-redux';
-import actions from '../../actions/actions';
-import io from 'socket.io-client';
-var socket = io.connect();
+// import actions from '../../actions/actions';
+// import io from 'socket.io-client';
+// var socket = io.connect();
 
 class Result extends Component {
-	constructor(props) {
-		super(props);
-	}
+	// constructor(props) {
+	// 	super(props);
+	// }
 
 	componentDidMount() {
-
+		this.props.socket.emit('test', "result component mounted");
 	}
 
 	render() {
@@ -35,7 +35,7 @@ class Result extends Component {
 							What did Vin Diesel eat for dinner?
 						</div>
 					</div>
-					<div className="white-card-container"> 
+					<div className="white-card-container">
 						{whiteCards}
 					</div>
 				</div>
@@ -47,7 +47,8 @@ class Result extends Component {
 const mapStateToProps = function (state, props) {
 	return {
 		blackCard: state.blackCard,
-		whiteCards: state.whiteCards
+		whiteCards: state.whiteCards,
+		socket: state.socket
 	};
 };
 

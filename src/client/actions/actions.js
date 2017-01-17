@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+// import fetch from 'isomorphic-fetch';
 
 const WHITE_CARD_CLICK_SUCCESS = 'WHITE_CARD_CLICK_SUCCESS';
 const whiteCardClickSuccess = (cardValue) => {
@@ -21,8 +21,8 @@ const blackCardClickSuccess = (string) => {
 	return {
 		type: BLACK_CARD_CLICK_SUCCESS,
 		string: string
-	}
-}
+	};
+};
 
 exports.WHITE_CARD_CLICK_SUCCESS = WHITE_CARD_CLICK_SUCCESS;
 exports.whiteCardClickSuccess = whiteCardClickSuccess;

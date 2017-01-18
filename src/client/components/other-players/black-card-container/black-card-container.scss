@@ -20,12 +20,22 @@
 }
 
 .black-card {
-	background-image: url("./../../../../../public/pancake-syrup.png");
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	background-position: center;
+	background-color: #000;
+    background-image: url("./../../../../../public/pancake-syrup.png");
+    -webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+  	background-position: center;
+    width: 350px;
+    margin: 5px 0px 0px -5px;
+    text-align: left;
+    font-size: 20px;
+    height: 275px;
+    border: 1px solid white;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #000;
 	margin:auto;
   
 }

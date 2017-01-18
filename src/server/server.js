@@ -63,15 +63,12 @@ io.on('connection', function (socket) {
 		io.sockets.emit('clicked', whiteCards);
 	});
 
-	function getRandomInt(min, max) {
-	    return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
-
-	// from: socket.id.slice(8)
+	
 	socket.on('chat-message', body => {
+		console.log(socket.id);
 		socket.broadcast.emit('chat-message', {
 			body,
-			from: 'Pancake User #' + getRandomInt(0, 1000)
+			from: 'Pancake User #' + socket.id.slice(5, 9)
 		});
 	});
 

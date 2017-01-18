@@ -26,8 +26,13 @@ class Game extends Component {
 		return (
 			<section className="game-container">
 				<div className="center">
-					<BlackCardContainer />
-					<WhiteCardContainer />
+					<div className="game-data">
+						<Score />
+						<Timer secondsRemaining="30"/>
+					</div>
+					<a href="#/"><button className="nav">Back to Home</button></a>
+					<BlackCardContainer question={this.props.question}/>
+					<WhiteCardContainer answers={this.props.answers}/>
 					<Chat />
 				</div>
 			</section>
@@ -36,8 +41,11 @@ class Game extends Component {
 }
 
 const mapStateToProps = function(state) {
+	console.log("GAME STATE: ", state);
 	return {
-		socket: state.socket
+		socket: state.gameReducer.socket,
+		question: state.gameReducer.question[0].text,
+		answers: state.gameReducer.answers
 	};
 };
 

@@ -24,10 +24,34 @@ const blackCardClickSuccess = (string) => {
 	};
 };
 
-exports.WHITE_CARD_CLICK_SUCCESS = WHITE_CARD_CLICK_SUCCESS;
-exports.whiteCardClickSuccess = whiteCardClickSuccess;
-exports.WHITE_CARD_CLICK_ERROR = WHITE_CARD_CLICK_ERROR;
-exports.whiteCardClickError = whiteCardClickError;
+export const START_GAME = 'START_GAME';
+export const startGame = (gameData) => {
+	return {
+		type: START_GAME,
+		gameData
+	};
+};
 
-exports.BLACK_CARD_CLICK_SUCCESS = BLACK_CARD_CLICK_SUCCESS;
-exports.blackCardClickSuccess = blackCardClickSuccess;
+export const ANSWER_SELECTED = 'ANSWER_SELECTED';
+export const answerSelected = (selectedAnswers) => {
+	return {
+		type: ANSWER_SELECTED,
+		selectedAnswers
+	};
+};
+
+export const CZAR_SELECTION_MADE = 'CZAR_SELECTION_MADE';
+export const czarSelectionMade = (czarSelection) => {
+	return {
+		type: CZAR_SELECTION_MADE,
+		czarSelection
+	};
+};
+
+// exports.WHITE_CARD_CLICK_SUCCESS = WHITE_CARD_CLICK_SUCCESS;
+// exports.whiteCardClickSuccess = whiteCardClickSuccess;
+// exports.WHITE_CARD_CLICK_ERROR = WHITE_CARD_CLICK_ERROR;
+// exports.whiteCardClickError = whiteCardClickError;
+//
+// exports.BLACK_CARD_CLICK_SUCCESS = BLACK_CARD_CLICK_SUCCESS;
+// exports.blackCardClickSuccess = blackCardClickSuccess;

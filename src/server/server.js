@@ -53,31 +53,73 @@ app.get("*", (req, res) => {
 	});
 });
 
-io.on('connection', function (socket) {
+// function createNewGame(gameDataDB) {
+//   var question = gameDataDB[0].questions.splice(0,1)[0];
+//   var answers = gameData[0].answers;
+//   return {
+//     question: question,
+//     answers: answers,
+//     gameData: gameDataDB
+//   };
+// };
+
+var gameData;
+var selectedAnswers;
+
+Game.find({}).exec(function(err, gameDataDB) {
+  if(err) console.log("err: ", err);
+  selectedAnswers = [];
+  gameData = gameDataDB;
+  gameData[0].currentQuestion = "";
+  // console.log("GAMEDATA!! ", gameData[0].questions);
+
+  io.on('connection', function (socket) {
     console.log('Client connected')
-	io.emit('message', {message: "message sent!!"})
+  	io.emit('message', {message: "message sent!!"})
     console.log(prettyjson.render(socket.adapter.rooms, options));
-	socket.on('clicked', function(message) {
-		whiteCards.push(message);
-		console.log('Received message:', message + " " + socket.id.slice(8));
-		io.sockets.emit('clicked', whiteCards);
-	});
-
-	
-	socket.on('chat-message', body => {
-		socket.broadcast.emit('chat-message', {
-			body,
-			from: 'Pancake User #' + socket.id.slice(5, 9)
-		});
-	});
-
-	  socket.on('test', function(message) {
-	    console.log("test confirmed from ", message, " from client: ", socket.id);
-	  })
-
-	socket.on('disconnect', function() {
-	    console.log('user disconnected');
-	});
+  	socket.on('newGame', function() {
+      console.log("GAMEDATA: ", Object.keys(gameData));
+      gameData[0].currentQuestion = gameData[0].questions.splice(0,1);
+      console.log("cQuestion", gameData[0].currentQuestion);
+      socket.emit('startGameData', {
+        question: gameData[0].currentQuestion,
+        answers: gameData[0].answers.splice(0,10),
+        czar: true
+      });
+  	});
+    socket.on('joinGame', function() {
+      console.log("cQuestion", gameData[0].currentQuestion);
+      socket.emit('getGameData', {
+        question: gameData[0].currentQuestion,
+        answers: gameData[0].answers.splice(0,10),
+        czar: false
+      });
+    });
+    socket.on('answerSelected', function(answerSelected) {
+      selectedAnswers.push(answerSelected);
+      io.emit('selectedAnswers', {selectedAnswers: selectedAnswers});
+    })
+    socket.on('czarSelection', function(czarSelection) {
+      io.emit('czarPick', {czarSelection: czarSelection});
+    });
+  	socket.on('black', function(message) {
+  		console.log("3");
+  		console.log('Received message:', message + " " + socket.id.slice(8));
+  		io.sockets.emit('black', message);
+  	});
+    socket.on('chat-message', body => {
+      socket.broadcast.emit('chat-message', {
+        body,
+        from: 'Pancake User #' + socket.id.slice(5, 9)
+      });
+    });
+    socket.on('test', function(message) {
+      console.log("test confirmed from ", message, " from client: ", socket.id);
+    })
+  	socket.on('disconnect', function() {
+  	    console.log('user disconnected');
+  	});
+  });
 });
 
 // ----------------------
@@ -93,7 +135,21 @@ for (let file of fs.readdirSync(setsPath)) {
 }
 
 // TODO: test in progress
-// console.log(cards.generateDecks());
+import Game from './models/Game';
+// Seed database with all three editions in json format
+// var cardData = cards.generateDecks();
+// console.log(Object.keys(cardData));
+// console.log(cardData._whiteDeck);
+// Game.create({questions: cardData._blackDeck, answers: cardData._whiteDeck}, function(err, deck) {
+//   if(err) console.log("error: ", err);
+//   console.log("Success: ", deck);
+// })
+
+//Pull data from database
+// Game.find({}).select('questions').exec(function(err, results) {
+//   if(err)console.log("err: ", err);
+//   console.log("results: ", results[0].questions.slice(0,10))
+// });
 
 mongoose.Promise = global.Promise; //address depreciated mongoose library warning
 mongoose.connect(process.env.DATABASE_URI || 'mongodb://<database name>').then(function() {

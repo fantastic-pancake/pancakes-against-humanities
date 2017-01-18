@@ -26,13 +26,10 @@ class Game extends Component {
 		return (
 			<section className="game-container">
 				<div className="center">
-					<div className="game-data">
-						<Score />
-						<Timer secondsRemaining="30"/>
+					<div className="gameContainer">
+						<BlackCardContainer question={this.props.question}/>
+						<WhiteCardContainer answers={this.props.answers}/>
 					</div>
-					<a href="#/"><button className="nav">Back to Home</button></a>
-					<BlackCardContainer question={this.props.question}/>
-					<WhiteCardContainer answers={this.props.answers}/>
 					<Chat />
 				</div>
 			</section>

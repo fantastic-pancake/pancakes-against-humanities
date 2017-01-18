@@ -1,12 +1,12 @@
-.black-card-container {
-  font-size: 20px;
-  height: 275px;
-  border-radius: 10px;
-  font-weight: bold;
-  width: 70%;
-  margin-top: 25px;
-  margin-bottom: 10px;
-}
+// .black-card-container {
+//   font-size: 20px;
+//   height: 275px;
+//   border-radius: 10px;
+//   font-weight: bold;
+//   width: 70%;
+//   margin-top: 25px;
+//   margin-bottom: 10px;
+// }
 
 .cardText {
 	margin: 0 auto;
@@ -19,8 +19,8 @@
   text-shadow: 0.5px 0 0 white, -0.5px 0 0 white, 0 0.5px 0 white, 0 -0.5px 0 white, 1px 1px white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white;
 }
 
-.black-card {
-	background-color: #000;
+.black-card-container {
+	// background-color: #000;
     background-image: url("./../../../../../public/pancake-syrup.png");
     -webkit-background-size: cover;
   	-moz-background-size: cover;
@@ -29,13 +29,13 @@
   	background-position: center;
     width: 350px;
     margin: 5px 0px 0px -5px;
-    text-align: left;
+    text-align: center;
     font-size: 20px;
     height: 275px;
-    border: 1px solid white;
+    // border: 1px solid white;
     border-radius: 10px;
     font-weight: bold;
     color: #000;
 	margin:auto;
-  
+
 }

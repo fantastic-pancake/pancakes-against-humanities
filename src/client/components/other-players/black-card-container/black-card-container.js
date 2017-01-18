@@ -10,7 +10,7 @@ class BlackCardContainer extends Component {
 		return (
 			<div className="black-card-container">
 				<div className="cardText">
-					What did Vin Diesel eat for dinner?
+					{this.props.question}
 				</div>
 			</div>
 		);

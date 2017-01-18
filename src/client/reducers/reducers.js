@@ -1,5 +1,6 @@
-import actions from '../actions/actions';
+import * as types from '../actions/actions';
 import io from 'socket.io-client';
+import { combineReducers } from 'redux';
 
 const initialState = {
 	blackCard: "",
@@ -7,16 +8,33 @@ const initialState = {
 	socket: io.connect()
 };
 
-const gameReducer = (state, action) => {
-	let copyState = state || initialState;
-	copyState.socket.emit('test', "reducer component mounted");
-	state = Object.assign({}, copyState);
+const gameReducer = (state = initialState, action = {}) => {
+	// let copyState = state || initialState;
+	// copyState.socket.emit('test', "reducer component mounted");
+	// state = Object.assign({}, copyState);
+	// state.socket.emit('test', "reducer component mounted");
 
-	if (action.type === actions.WHITE_CARD_CLICK_SUCCESS) {
-		state.whiteCards = [];
-		state.whiteCards = state.whiteCards.concat(action.cardValue);
+	switch (action.type) {
+		case types.WHITE_CARD_CLICK_SUCCESS:
+			state.whiteCards = [];
+			state.whiteCards = state.whiteCards.concat(action.cardValue);
+			return state;
+		case types.START_GAME:
+			console.log("GAMEDATA: ", action.gameData);
+			return {
+				...state,
+				question: action.gameData.question,
+				answers: action.gameData.answers
+			};
+		default:
+			return state;
 	}
-	return state;
 };
 
-exports.gameReducer = gameReducer;
+// exports.gameReducer = gameReducer;
+
+const rootReducer = combineReducers({
+	gameReducer
+});
+
+export default rootReducer;

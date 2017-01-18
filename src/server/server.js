@@ -53,50 +53,44 @@ app.get("*", (req, res) => {
 	});
 });
 
-io.on('connection', function (socket) {
+Game.find({}).exec(function(err, gameData) {
+  if(err) console.log("err: ", err);
+  io.on('connection', function (socket) {
+    var selectedAnswers = [];
     console.log('Client connected')
-	io.emit('message', {message: "message sent!!"})
-    console.log(prettyjson.render(socket.adapter.rooms, options));
-	socket.on('newGame', function() {
-    Game.find({}).exec(function(err, results) {
-      if(err) console.log("err: ", err);
-      var selectedAnswers = [];
-      sockets.emit('startGameData', {
-        question: results[0].questions[1],
-        answers: results[0].answers.splice(0,10)
+  	io.emit('message', {message: "message sent!!"})
+      console.log(prettyjson.render(socket.adapter.rooms, options));
+  	socket.on('newGame', function() {
+      socket.emit('startGameData', {
+        question: gameData[0].questions[1],
+        answers: gameData[0].answers.splice(0,10)
       });
-      io.on('joinGame', function() {
-        socket.emit('startGameData', {
-          question: results[0].questions[1],
-          answers: results[0].answers.splice(0,10)
-        });
-      });
-      socket.on('answerSelected', function(answerSelected) {
-        selectedAnswers.push(answerSelected);
-        io.emit('selectedAnswers', {selectedAnswers: selectedAnswers});
-      })
-      socket.on('czarSelection', function(czarSelection) {
-        io.emit('czarPick', {czarSelection: czarSelection});
+  	});
+    socket.on('joinGame', function() {
+      socket.emit('startGameData', {
+        question: gameData[0].questions[1],
+        answers: gameData[0].answers.splice(0,10)
       });
     });
-		console.log('Received message:', message + " " + socket.id.slice(8));
-		io.sockets.emit('clicked', whiteCards);
-	});
-
-	socket.on('black', function(message) {
-		console.log("3");
-		console.log('Received message:', message + " " + socket.id.slice(8));
-		io.sockets.emit('black', message);
-
-	});
-
-  socket.on('test', function(message) {
-    console.log("test confirmed from ", message, " from client: ", socket.id);
-  })
-
-	socket.on('disconnect', function() {
-	    console.log('user disconnected');
-	});
+    socket.on('answerSelected', function(answerSelected) {
+      selectedAnswers.push(answerSelected);
+      io.emit('selectedAnswers', {selectedAnswers: selectedAnswers});
+    })
+    socket.on('czarSelection', function(czarSelection) {
+      io.emit('czarPick', {czarSelection: czarSelection});
+    });
+  	socket.on('black', function(message) {
+  		console.log("3");
+  		console.log('Received message:', message + " " + socket.id.slice(8));
+  		io.sockets.emit('black', message);
+  	});
+    socket.on('test', function(message) {
+      console.log("test confirmed from ", message, " from client: ", socket.id);
+    })
+  	socket.on('disconnect', function() {
+  	    console.log('user disconnected');
+  	});
+  });
 });
 
 // ----------------------

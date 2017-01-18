@@ -26,11 +26,11 @@ class WhiteCard extends Component {
 	}
 
 	render() {
-		var array = ['Geeese.', 'Doo-doo.', 'Police brutality.', 'Hillary Clinton\`s death stare.', 'My soul.', 'Beefin\' over turf.', 'Teenage pregnancy.', 'Becoming a blueberry.', 'The Force.', 'Sweet, sweet vengeance.'];
-		var cards = array.map((card, key) => {
+		// var array = ['Geeese.', 'Doo-doo.', 'Police brutality.', 'Hillary Clinton\`s death stare.', 'My soul.', 'Beefin\' over turf.', 'Teenage pregnancy.', 'Becoming a blueberry.', 'The Force.', 'Sweet, sweet vengeance.'];
+		var cards = this.props.answers.map((card, key) => {
 			return (
 				<a key={key} href="#/result" onClick={this._click.bind(this)}  className="white-card" id={key}>
-					{card}
+					{card.text}
 				</a>
 			);
 		});

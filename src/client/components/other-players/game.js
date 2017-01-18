@@ -22,8 +22,8 @@ class Game extends Component {
 						<Timer secondsRemaining="30"/>
 					</div>
 					<a href="#/"><button className="nav">Back to Home</button></a>
-					<BlackCardContainer />
-					<WhiteCardContainer />
+					<BlackCardContainer question={this.props.question}/>
+					<WhiteCardContainer answers={this.props.answers}/>
 				</div>
 			</section>
 		);
@@ -32,7 +32,9 @@ class Game extends Component {
 
 const mapStateToProps = function(state) {
 	return {
-		socket: state.socket
+		socket: state.gameReducer.socket,
+		question: state.gameReducer.question.text,
+		answers: state.gameReducer.answers
 	};
 };
 

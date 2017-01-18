@@ -24,10 +24,18 @@ const blackCardClickSuccess = (string) => {
 	};
 };
 
-exports.WHITE_CARD_CLICK_SUCCESS = WHITE_CARD_CLICK_SUCCESS;
-exports.whiteCardClickSuccess = whiteCardClickSuccess;
-exports.WHITE_CARD_CLICK_ERROR = WHITE_CARD_CLICK_ERROR;
-exports.whiteCardClickError = whiteCardClickError;
+export const START_GAME = 'START_GAME';
+export const startGame = (gameData) => {
+	return {
+		type: START_GAME,
+		gameData
+	};
+};
 
-exports.BLACK_CARD_CLICK_SUCCESS = BLACK_CARD_CLICK_SUCCESS;
-exports.blackCardClickSuccess = blackCardClickSuccess;
+// exports.WHITE_CARD_CLICK_SUCCESS = WHITE_CARD_CLICK_SUCCESS;
+// exports.whiteCardClickSuccess = whiteCardClickSuccess;
+// exports.WHITE_CARD_CLICK_ERROR = WHITE_CARD_CLICK_ERROR;
+// exports.whiteCardClickError = whiteCardClickError;
+//
+// exports.BLACK_CARD_CLICK_SUCCESS = BLACK_CARD_CLICK_SUCCESS;
+// exports.blackCardClickSuccess = blackCardClickSuccess;

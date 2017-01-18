@@ -55,14 +55,14 @@ app.get("*", (req, res) => {
 
 Game.find({}).exec(function(err, gameData) {
   if(err) console.log("err: ", err);
+  var selectedAnswers = [];
   io.on('connection', function (socket) {
-    var selectedAnswers = [];
     console.log('Client connected')
   	io.emit('message', {message: "message sent!!"})
       console.log(prettyjson.render(socket.adapter.rooms, options));
   	socket.on('newGame', function() {
       socket.emit('startGameData', {
-        question: gameData[0].questions[1],
+        question: gameData[0].questions.splice(0,1),
         answers: gameData[0].answers.splice(0,10)
       });
   	});

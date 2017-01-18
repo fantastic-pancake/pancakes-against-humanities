@@ -26,6 +26,12 @@ const gameReducer = (state = initialState, action = {}) => {
 				question: action.gameData.question,
 				answers: action.gameData.answers
 			};
+		case types.ANSWER_SELECTED:
+			console.log("SELECTEDANSWERS: ", action.selectedAnswers);
+			return {
+				...state,
+				selectedAnswers: action.selectedAnswers.selectedAnswers
+			};
 		default:
 			return state;
 	}

@@ -13,14 +13,14 @@ class Result extends Component {
 	}
 
 	render() {
-		console.log(this.props.whiteCards);
-		var whiteCards = this.props.whiteCards.map((card, key) => {
+		var selectedAnswersCards = this.props.selectedAnswers.map((card, key) => {
 			return (
 				<div key={key} name="card" className="white-card">
 					{card}
 				</div>
 			);
 		});
+
 		return (
 			<section className="results-container">
 				<div className="center">
@@ -30,11 +30,11 @@ class Result extends Component {
 					</div>
 					<div className="black-card-container">
 						<div className="cardText">
-							What did Vin Diesel eat for dinner?
+							{this.props.question[0].text}
 						</div>
 					</div>
 					<div className="white-card-container">
-						{whiteCards}
+						{[selectedAnswersCards]}
 					</div>
 				</div>
 			</section>
@@ -43,10 +43,11 @@ class Result extends Component {
 }
 
 const mapStateToProps = function (state) {
+	console.log("RESULT STATE: ", state);
 	return {
-		blackCard: state.blackCard,
-		whiteCards: state.whiteCards,
-		socket: state.socket
+		socket: state.gameReducer.socket,
+		question: state.gameReducer.question,
+		selectedAnswers: state.gameReducer.selectedAnswers
 	};
 };
 

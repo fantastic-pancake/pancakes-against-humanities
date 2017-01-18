@@ -33,7 +33,7 @@ class Game extends Component {
 const mapStateToProps = function(state) {
 	return {
 		socket: state.gameReducer.socket,
-		question: state.gameReducer.question.text,
+		question: state.gameReducer.question[0].text,
 		answers: state.gameReducer.answers
 	};
 };

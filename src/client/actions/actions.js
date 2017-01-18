@@ -32,6 +32,14 @@ export const startGame = (gameData) => {
 	};
 };
 
+export const ANSWER_SELECTED = 'ANSWER_SELECTED';
+export const answerSelected = (selectedAnswers) => {
+	return {
+		type: ANSWER_SELECTED,
+		selectedAnswers
+	};
+};
+
 // exports.WHITE_CARD_CLICK_SUCCESS = WHITE_CARD_CLICK_SUCCESS;
 // exports.whiteCardClickSuccess = whiteCardClickSuccess;
 // exports.WHITE_CARD_CLICK_ERROR = WHITE_CARD_CLICK_ERROR;

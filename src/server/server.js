@@ -58,23 +58,26 @@ io.on('connection', function (socket) {
 	io.emit('message', {message: "message sent!!"})
     console.log(prettyjson.render(socket.adapter.rooms, options));
 	socket.on('clicked', function(message) {
-		console.log("2");
 		whiteCards.push(message);
-		console.log(whiteCards);
 		console.log('Received message:', message + " " + socket.id.slice(8));
 		io.sockets.emit('clicked', whiteCards);
 	});
 
-	socket.on('black', function(message) {
-		console.log("3");
-		console.log('Received message:', message + " " + socket.id.slice(8));
-		io.sockets.emit('black', message);
+	function getRandomInt(min, max) {
+	    return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
 
+	// from: socket.id.slice(8)
+	socket.on('chat-message', body => {
+		socket.broadcast.emit('chat-message', {
+			body,
+			from: 'Pancake User #' + getRandomInt(0, 1000)
+		});
 	});
 
-  socket.on('test', function(message) {
-    console.log("test confirmed from ", message, " from client: ", socket.id);
-  })
+	  socket.on('test', function(message) {
+	    console.log("test confirmed from ", message, " from client: ", socket.id);
+	  })
 
 	socket.on('disconnect', function() {
 	    console.log('user disconnected');

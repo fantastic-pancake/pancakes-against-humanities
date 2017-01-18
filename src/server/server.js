@@ -57,10 +57,28 @@ io.on('connection', function (socket) {
     console.log('Client connected')
 	io.emit('message', {message: "message sent!!"})
     console.log(prettyjson.render(socket.adapter.rooms, options));
-	socket.on('clicked', function(message) {
-		console.log("2");
-		whiteCards.push(message);
-		console.log(whiteCards);
+	socket.on('newGame', function() {
+    Game.find({}).exec(function(err, results) {
+      if(err) console.log("err: ", err);
+      var selectedAnswers = [];
+      sockets.emit('startGameData', {
+        question: results[0].questions[1],
+        answers: results[0].answers.splice(0,10)
+      });
+      io.on('joinGame', function() {
+        socket.emit('startGameData', {
+          question: results[0].questions[1],
+          answers: results[0].answers.splice(0,10)
+        });
+      });
+      socket.on('answerSelected', function(answerSelected) {
+        selectedAnswers.push(answerSelected);
+        io.emit('selectedAnswers', {selectedAnswers: selectedAnswers});
+      })
+      socket.on('czarSelection', function(czarSelection) {
+        io.emit('czarPick', {czarSelection: czarSelection});
+      });
+    });
 		console.log('Received message:', message + " " + socket.id.slice(8));
 		io.sockets.emit('clicked', whiteCards);
 	});
@@ -94,7 +112,21 @@ for (let file of fs.readdirSync(setsPath)) {
 }
 
 // TODO: test in progress
-// console.log(cards.generateDecks());
+import Game from './models/Game';
+// Seed database with all three editions in json format
+// var cardData = cards.generateDecks();
+// console.log(Object.keys(cardData));
+// console.log(cardData._whiteDeck);
+// Game.create({questions: cardData._blackDeck, answers: cardData._whiteDeck}, function(err, deck) {
+//   if(err) console.log("error: ", err);
+//   console.log("Success: ", deck);
+// })
+
+//Pull data from database
+// Game.find({}).select('questions').exec(function(err, results) {
+//   if(err)console.log("err: ", err);
+//   console.log("results: ", results[0].questions.slice(0,10))
+// });
 
 mongoose.Promise = global.Promise; //address depreciated mongoose library warning
 mongoose.connect(process.env.DATABASE_URI || 'mongodb://<database name>').then(function() {

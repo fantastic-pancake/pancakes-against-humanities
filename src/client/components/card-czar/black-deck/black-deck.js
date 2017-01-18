@@ -19,13 +19,13 @@ class BlackDeck extends Component {
 		return (
 			<div className="black-card-deck">
 				<a onClick={this._click.bind(this)} href="#/result" className="click-link">
-					<div className="black-card">
-						<div className="black-card">
-							<div className="black-card">
-								<div className="black-card">
-									<div className="black-card">
-										<div className="black-card">
-											<div  className="black-card">
+					<div className="black-deck-cards">
+						<div className="black-deck-cards">
+							<div className="black-deck-cards">
+								<div className="black-deck-cards">
+									<div className="black-deck-cards">
+										<div className="black-deck-cards">
+											<div  className="black-deck-cards">
 												<div className="click-me">Select a card!</div>
 											</div>
 										</div>

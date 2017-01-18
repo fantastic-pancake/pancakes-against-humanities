@@ -2,6 +2,7 @@ import "./result.scss";
 import React, {Component} from "react";
 import {connect} from 'react-redux';
 import {answerSelected, czarSelectionMade} from '../../actions/actions';
+import ChatBox from '../chat/chat';
 
 class Result extends Component {
 	// constructor(props) {
@@ -41,19 +42,24 @@ class Result extends Component {
 		return (
 			<section className="results-container">
 				<div className="center">
-					<div>
-						<a href="#/"><button className="nav">Back to Home</button></a>
-						<h1 className="result-title">Results</h1>
-						{this.props.czar ? <div><h2>Card Czar</h2><h3>Pick your favorite answer</h3></div> : ""}
-					</div>
-					<div className="black-card-container">
-						<div className="cardText">
-							{this.props.question}
-						</div>
-					</div>
-					<div className="white-card-container">
-						{[selectedAnswersCards]}
-					</div>
+          <section className="result-section">
+            <div>
+              <a href="#/"><button className="nav">Back to Home</button></a>
+              <h1 className="result-title">Results</h1>
+              {this.props.czar ? <div><h2>Card Czar</h2><h3>Pick your favorite answer</h3></div> : ""}
+            </div>
+            <div className="black-card-container">
+              <div className="cardText">
+                {this.props.question}
+              </div>
+            </div>
+            <div className="white-card-container">
+              {[selectedAnswersCards]}
+            </div>
+          </section>
+          <section>
+						<ChatBox />
+					</section>
 				</div>
 			</section>
 		);

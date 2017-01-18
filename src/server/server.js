@@ -107,6 +107,12 @@ Game.find({}).exec(function(err, gameDataDB) {
   		console.log('Received message:', message + " " + socket.id.slice(8));
   		io.sockets.emit('black', message);
   	});
+    socket.on('chat-message', body => {
+      socket.broadcast.emit('chat-message', {
+        body,
+        from: 'Pancake User #' + socket.id.slice(5, 9)
+      });
+    });
     socket.on('test', function(message) {
       console.log("test confirmed from ", message, " from client: ", socket.id);
     })

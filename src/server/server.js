@@ -65,7 +65,6 @@ io.on('connection', function (socket) {
 
 	
 	socket.on('chat-message', body => {
-		console.log(socket.id);
 		socket.broadcast.emit('chat-message', {
 			body,
 			from: 'Pancake User #' + socket.id.slice(5, 9)

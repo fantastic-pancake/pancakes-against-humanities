@@ -1,6 +1,7 @@
 import "./result.scss";
 import React, {Component} from "react";
 import {connect} from 'react-redux';
+import ChatBox from '../chat/chat';
 // import actions from '../../actions/actions';
 
 class Result extends Component {
@@ -23,19 +24,23 @@ class Result extends Component {
 		});
 		return (
 			<section className="results-container">
-				<div className="center">
-					<div>
-						<a href="#/"><button className="nav">Back to Home</button></a>
-						<h1 className="result-title">Results</h1>
-					</div>
-					<div className="black-card-container">
-						<div className="cardText">
-							What did Vin Diesel eat for dinner?
+				<div className="center">	
+					<section className="result-section">
+						<div>
+							<h1 className="result-title">Results</h1>
 						</div>
-					</div>
-					<div className="white-card-container">
-						{whiteCards}
-					</div>
+						<div className="black-card">
+							<div className="cardText">
+								What did Vin Diesel eat for dinner?
+							</div>
+						</div>
+						<div className="white-card-container">
+							{whiteCards}
+						</div>
+					</section>
+					<section>
+						<ChatBox />
+					</section>
 				</div>
 			</section>
 		);

@@ -13,12 +13,19 @@ class Result extends Component {
 		this.props.socket.emit('test', "result component mounted");
 	}
 
+	_click(event) {
+		let target = document.getElementById(event.target.innerHTML);
+		target.className += ' highlight';
+	}
+
 	render() {
 		console.log(this.props.whiteCards);
 		var whiteCards = this.props.whiteCards.map((card, key) => {
 			return (
-				<div key={key} name="card" className="white-card">
-					{card}
+				<div key={key} onClick={this._click.bind(this)} >
+					<div name="card" className="white-card" id={card}>
+						{card}
+					</div>
 				</div>
 			);
 		});
@@ -34,7 +41,7 @@ class Result extends Component {
 								What did Vin Diesel eat for dinner?
 							</div>
 						</div>
-						<div className="white-card-container">
+						<div className="result-white-card-container">
 							{whiteCards}
 						</div>
 					</section>

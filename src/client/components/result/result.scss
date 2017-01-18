@@ -17,3 +17,15 @@
 .result-title {
 	font-size: 40px;
 }
+
+.result-white-card-container {
+	display: flex;
+	margin: auto;
+    width: 1200px;
+    justify-content: space-around;
+    flex-wrap:wrap;
+}
+
+.highlight {
+	border: 5px solid yellow;
+}

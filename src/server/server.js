@@ -53,23 +53,46 @@ app.get("*", (req, res) => {
 	});
 });
 
-Game.find({}).exec(function(err, gameData) {
+// function createNewGame(gameDataDB) {
+//   var question = gameDataDB[0].questions.splice(0,1)[0];
+//   var answers = gameData[0].answers;
+//   return {
+//     question: question,
+//     answers: answers,
+//     gameData: gameDataDB
+//   };
+// };
+
+var gameData;
+var selectedAnswers;
+
+Game.find({}).exec(function(err, gameDataDB) {
   if(err) console.log("err: ", err);
-  var selectedAnswers = [];
+  selectedAnswers = [];
+  gameData = gameDataDB;
+  gameData[0].currentQuestion = "";
+  // console.log("GAMEDATA!! ", gameData[0].questions);
+
   io.on('connection', function (socket) {
     console.log('Client connected')
   	io.emit('message', {message: "message sent!!"})
-      console.log(prettyjson.render(socket.adapter.rooms, options));
+    console.log(prettyjson.render(socket.adapter.rooms, options));
   	socket.on('newGame', function() {
+      console.log("GAMEDATA: ", Object.keys(gameData));
+      gameData[0].currentQuestion = gameData[0].questions.splice(0,1);
+      console.log("cQuestion", gameData[0].currentQuestion);
       socket.emit('startGameData', {
-        question: gameData[0].questions.splice(0,1),
-        answers: gameData[0].answers.splice(0,10)
+        question: gameData[0].currentQuestion,
+        answers: gameData[0].answers.splice(0,10),
+        czar: true
       });
   	});
     socket.on('joinGame', function() {
-      socket.emit('startGameData', {
-        question: gameData[0].questions[1],
-        answers: gameData[0].answers.splice(0,10)
+      console.log("cQuestion", gameData[0].currentQuestion);
+      socket.emit('getGameData', {
+        question: gameData[0].currentQuestion,
+        answers: gameData[0].answers.splice(0,10),
+        czar: false
       });
     });
     socket.on('answerSelected', function(answerSelected) {

@@ -8,6 +8,10 @@ class Room extends Component {
 		console.log("props: ", this.props);
 		this.props.socket.on('startGameData', (gameData) => {
 			this.props.startGame(gameData);
+			window.location.href="http://localhost:3000/#/result";
+		});
+		this.props.socket.on('getGameData', (gameData) => {
+			this.props.startGame(gameData);
 			window.location.href="http://localhost:3000/#/game";
 		});
 	}
@@ -31,7 +35,6 @@ class Room extends Component {
 					<h2>Please wait for other players to join...</h2>
 					<button onClick={this.newGame.bind(this)}>Start Game</button>
 					<button onClick={this.joinGame.bind(this)}>Join Game</button>
-					<a href="#/czar"><button>Czar</button></a>
 				</div>
 			</section>
 		);

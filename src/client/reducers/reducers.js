@@ -24,13 +24,21 @@ const gameReducer = (state = initialState, action = {}) => {
 			return {
 				...state,
 				question: action.gameData.question,
-				answers: action.gameData.answers
+				answers: action.gameData.answers,
+				selectedAnswers: action.gameData.selectedAnswers,
+				czar: action.gameData.czar
 			};
 		case types.ANSWER_SELECTED:
 			console.log("SELECTEDANSWERS: ", action.selectedAnswers);
 			return {
 				...state,
 				selectedAnswers: action.selectedAnswers.selectedAnswers
+			};
+		case types.CZAR_SELECTION_MADE:
+			console.log("CZAR SELECTION: ", action.czarSelection);
+			return {
+				...state,
+				czarSelection: action.czarSelection.czarSelection
 			};
 		default:
 			return state;

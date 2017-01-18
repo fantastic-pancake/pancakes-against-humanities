@@ -40,6 +40,14 @@ export const answerSelected = (selectedAnswers) => {
 	};
 };
 
+export const CZAR_SELECTION_MADE = 'CZAR_SELECTION_MADE';
+export const czarSelectionMade = (czarSelection) => {
+	return {
+		type: CZAR_SELECTION_MADE,
+		czarSelection
+	};
+};
+
 // exports.WHITE_CARD_CLICK_SUCCESS = WHITE_CARD_CLICK_SUCCESS;
 // exports.whiteCardClickSuccess = whiteCardClickSuccess;
 // exports.WHITE_CARD_CLICK_ERROR = WHITE_CARD_CLICK_ERROR;

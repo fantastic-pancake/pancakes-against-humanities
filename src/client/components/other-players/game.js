@@ -14,6 +14,13 @@ class Game extends Component {
 		this.props.socket.emit('test', "game component mounted");
 	}
 
+	componentWillMount() {
+		document.body.style.backgroundColor = "#D3D3D3";
+	}
+	componentWillUnmount() {
+		document.body.style.backgroundColor = null;
+	}
+
 // <section className="game-nav">
 // 						<div className="game-data">
 // 							<Score />
@@ -26,11 +33,14 @@ class Game extends Component {
 		return (
 			<section className="game-container">
 				<div className="center">
-					<div className="gameContainer">
-						<BlackCardContainer question={this.props.question}/>
-						<WhiteCardContainer answers={this.props.answers}/>
-					</div>
 					<Chat />
+					<div className="game-data">
+						<Score />
+						<Timer secondsRemaining="30"/>
+						<a href="#/"><button className="nav">Back to Home</button></a>
+					</div>
+					<BlackCardContainer question={this.props.question}/>
+					<WhiteCardContainer answers={this.props.answers}/>
 				</div>
 			</section>
 		);

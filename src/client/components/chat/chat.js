@@ -36,13 +36,13 @@ class ChatBox extends Component {
 			);
 		});
 		return (
-			<div className="chat-container">
+			<section className="chat-container">
 				<div className="chat-box">
 					<h2 className="chat-title">Chat</h2>
 					<ul className="message-list">{messages}</ul>
 					<input className="chat-input" type="text" placeholder="Enter a message..." onKeyUp={this.handleSubmit.bind(this)} />
 				</div>
-			</div>
+			</section>
 		);
 	}
 }

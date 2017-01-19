@@ -9,3 +9,17 @@
 .white-container {
 	width: 70%;
 }
+
+
+@media (max-width: 1450px) {
+	.white-card-container {
+		width: 100%;
+
+	}
+	.white-card {
+		width: 100px !important;
+		height: 175px !important;
+		font-size: 15px !important;
+		word-wrap: break-word !important;
+	}
+}

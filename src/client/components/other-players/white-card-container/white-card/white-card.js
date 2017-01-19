@@ -25,18 +25,11 @@ class WhiteCard extends Component {
 	}
 
 	_click(event) {
-		this.props.socket.emit('answerSelected', event.target.innerHTML);
-		// let component = this;
-		// this.props.socket.emit("clicked", event.target.innerHTML);
-		// this.props.socket.on("clicked", function(message) {
-		// 	console.log("dispatched " + message);
-		// 	component.props.dispatch(actions.whiteCardClickSuccess(message));
-		// });
+		this.props.socket.emit('answerSelected', {answer: event.target.innerHTML, deckID: this.props.deckID});
 	}
 
 	render() {
 		this.props.selectedAnswers;
-		// var array = ['Geeese.', 'Doo-doo.', 'Police brutality.', 'Hillary Clinton\`s death stare.', 'My soul.', 'Beefin\' over turf.', 'Teenage pregnancy.', 'Becoming a blueberry.', 'The Force.', 'Sweet, sweet vengeance.'];
 		var cards = this.props.answers.map((card, key) => {
 			return (
 				<div onClick={this._click.bind(this)}  className="white-card" id={key}>
@@ -57,7 +50,8 @@ const mapStateToProps = function (state) {
 	return {
 		socket: state.gameReducer.socket,
 		answers: state.gameReducer.answers,
-		selectedAnswers: state.gameReducer.selectedAnswers
+		selectedAnswers: state.gameReducer.selectedAnswers,
+		deckID: state.gameReducer.deckID
 	};
 };
 

@@ -1,26 +1,34 @@
 // import fetch from 'isomorphic-fetch';
 
-const WHITE_CARD_CLICK_SUCCESS = 'WHITE_CARD_CLICK_SUCCESS';
-const whiteCardClickSuccess = (cardValue) => {
-	return {
-		type: WHITE_CARD_CLICK_SUCCESS,
-		cardValue: cardValue
-	};
-};
+// const WHITE_CARD_CLICK_SUCCESS = 'WHITE_CARD_CLICK_SUCCESS';
+// const whiteCardClickSuccess = (cardValue) => {
+// 	return {
+// 		type: WHITE_CARD_CLICK_SUCCESS,
+// 		cardValue: cardValue
+// 	};
+// };
+//
+// const WHITE_CARD_CLICK_ERROR = 'WHITE_CARD_CLICK_ERROR';
+// const whiteCardClickError = (err) => {
+// 	return {
+// 		type: WHITE_CARD_CLICK_ERROR,
+// 		error: err
+// 	};
+// };
+//
+// const BLACK_CARD_CLICK_SUCCESS = 'BLACK_CARD_CLICK_SUCCESS';
+// const blackCardClickSuccess = (string) => {
+// 	return {
+// 		type: BLACK_CARD_CLICK_SUCCESS,
+// 		string: string
+// 	};
+// };
 
-const WHITE_CARD_CLICK_ERROR = 'WHITE_CARD_CLICK_ERROR';
-const whiteCardClickError = (err) => {
+export const GAMES_OPEN = 'GAMES_OPEN';
+export const gamesOpen = (gamesInProgress) => {
 	return {
-		type: WHITE_CARD_CLICK_ERROR,
-		error: err
-	};
-};
-
-const BLACK_CARD_CLICK_SUCCESS = 'BLACK_CARD_CLICK_SUCCESS';
-const blackCardClickSuccess = (string) => {
-	return {
-		type: BLACK_CARD_CLICK_SUCCESS,
-		string: string
+		type: GAMES_OPEN,
+		gamesInProgress
 	};
 };
 
@@ -45,6 +53,14 @@ export const czarSelectionMade = (czarSelection) => {
 	return {
 		type: CZAR_SELECTION_MADE,
 		czarSelection
+	};
+};
+
+export const LOGGED_IN = 'LOGGED_IN';
+export const loggedIn = (id) => {
+	return {
+		type: LOGGED_IN,
+		id
 	};
 };
 

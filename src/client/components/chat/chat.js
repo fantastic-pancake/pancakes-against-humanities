@@ -1,7 +1,8 @@
 import './chat.scss';
 import React, {Component} from "react";
-import io from 'socket.io-client';
-var socket = io.connect();
+import {connect} from 'react-redux';
+// import io from 'socket.io-client';
+// var socket = io.connect();
 
 class ChatBox extends Component {
 	constructor(props) {
@@ -10,8 +11,8 @@ class ChatBox extends Component {
 	}
 
 	componentDidMount() {
-		this.socket = io('/');
-		this.socket.on('chat-message', message => {
+		// this.props.socket = io('/');
+		this.props.socket.on('chat-message', message => {
 			this.setState({ messages: [...this.state.messages, message] });
 		});
 	}
@@ -24,7 +25,7 @@ class ChatBox extends Component {
 				from: 'Me'
 			};
 			this.setState({ messages: [...this.state.messages, message] });
-			this.socket.emit('chat-message', body);
+			this.props.socket.emit('chat-message', body);
 			event.target.value = '';
 		}
 	}
@@ -47,4 +48,11 @@ class ChatBox extends Component {
 	}
 }
 
-export default ChatBox;
+const mapStateToProps = function(state) {
+	return {
+		socket: state.gameReducer.socket
+	};
+};
+
+var Container = connect(mapStateToProps)(ChatBox);
+module.exports = Container;

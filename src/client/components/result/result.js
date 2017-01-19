@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import {connect} from 'react-redux';
 import {answerSelected, czarSelectionMade} from '../../actions/actions';
 import BlackCardContainer from './../other-players/black-card-container/black-card-container';
-import WhiteCardContainer from './../other-players/white-card-container/white-card-container';
+// import WhiteCardContainer from './../other-players/white-card-container/white-card-container';
 import Chat from '../chat/chat';
 import Timer from '../other-players/timer/timer';
 import Score from '../other-players/score/score';
@@ -68,7 +68,7 @@ class Result extends Component {
 								{[selectedAnswersCards]}
 							</div>
 						</div>
-						
+
 					</div>
 					<Chat />
 				</div>

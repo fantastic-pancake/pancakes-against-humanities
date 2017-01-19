@@ -8,8 +8,11 @@ import Score from './score/score';
 import Chat from '../chat/chat';
 
 class Game extends Component {
+	constructor(props) {
+		super(props);
+	}
+
 	componentDidMount() {
-		console.log("IN GAME");
 		this.props.socket.on('message', (message) => console.log(message));
 		this.props.socket.emit('test', "game component mounted");
 	}
@@ -20,14 +23,6 @@ class Game extends Component {
 	componentWillUnmount() {
 		document.body.style.backgroundColor = null;
 	}
-
-// <section className="game-nav">
-// 						<div className="game-data">
-// 							<Score />
-// 							<Timer secondsRemaining="30"/>
-// 						</div>
-// 						<a href="#/"><button className="nav">Back to Home</button></a>
-// 					</section>
 
 	render() {
 		return (
@@ -53,7 +48,7 @@ const mapStateToProps = function(state) {
 	console.log("GAME STATE: ", state);
 	return {
 		socket: state.gameReducer.socket,
-		question: state.gameReducer.question[0].text,
+		question: state.gameReducer.question[0].text || "",
 		answers: state.gameReducer.answers
 	};
 };

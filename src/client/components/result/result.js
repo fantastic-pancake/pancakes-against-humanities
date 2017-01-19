@@ -5,11 +5,13 @@ import {answerSelected, czarSelectionMade} from '../../actions/actions';
 import BlackCardContainer from './../other-players/black-card-container/black-card-container';
 import WhiteCardContainer from './../other-players/white-card-container/white-card-container';
 import Chat from '../chat/chat';
+import Timer from '../other-players/timer/timer';
+import Score from '../other-players/score/score';
 
 class Result extends Component {
-	// constructor(props) {
-	// 	super(props);
-	// }
+	constructor(props) {
+		super(props);
+	}
 
 	componentDidMount() {
 		this.props.socket.emit('test', "result component mounted");
@@ -22,10 +24,17 @@ class Result extends Component {
 		});
 	}
 
+	componentWillMount() {
+		document.body.style.backgroundColor = "#D3D3D3";
+	}
+	componentWillUnmount() {
+		document.body.style.backgroundColor = null;
+	}
+
 	_clicked(event) {
 		this.props.czar && !this.props.czarSelection ?
 		this.props.socket.emit('czarSelection', event.target.innerHTML) :
-		this.props.czar ? alert("only one card can be selected, start a new round.") : alert("waiting for the card czar to pick!")
+		this.props.czar ? alert("only one card can be selected, start a new round.") : alert("waiting for the card czar to pick!");
 	}
 
 	render() {
@@ -46,14 +55,20 @@ class Result extends Component {
 			<section className="game-container">
 				<div className="center">
 					<div className="gameContainer result">
+						<div className="game-data-result">
+							<Score />
+							<Timer secondsRemaining="30"/>
+							<a href="#/"><button>Back to Home</button></a>
+						</div>
 						<div>
 							<h1 className="result-title">Results</h1>
 							{this.props.czar ? <div><h2>Card Czar</h2><h3>Pick your favorite answer</h3></div> : ""}
+							<BlackCardContainer question={this.props.question}/>
+							<div className="white-card-container">
+								{[selectedAnswersCards]}
+							</div>
 						</div>
-						<BlackCardContainer question={this.props.question}/>
-						<div className="white-card-container">
-							{[selectedAnswersCards]}
-						</div>
+						
 					</div>
 					<Chat />
 				</div>

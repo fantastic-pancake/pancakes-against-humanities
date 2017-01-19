@@ -21,7 +21,7 @@ class Score extends Component {
 
 const mapStateToProps = function (state) {
 	return {
-
+		state: state
 	};
 };
 

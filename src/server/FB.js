@@ -65,14 +65,17 @@ router.use(require('body-parser').urlencoded({ extended: true }));
 router.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 router.use(passport.initialize());
 router.use(passport.session());
-
+var prettyjson = require('prettyjson')
 router.get('/facebook',
   passport.authenticate('facebook', { scope : 'email'}));
 
 router.get('/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
-    res.redirect('/#/profile');
+    console.log('RES: ', res.req.user._id);
+    var user = res.req.user;
+    // console.log("USER: ", {name: user.name, id: user.id, profilePic: user.profilePic});
+    res.redirect("/#/profile?" + req.user._id);
   });
 
 router.get('/logout', function(req, res) {

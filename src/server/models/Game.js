@@ -9,6 +9,15 @@ var GameSchema = new mongoose.Schema({
   answers: {
     type: Array,
     required: true
+  },
+  creatorID: {
+    type: String
+  },
+  players: {
+    type: Number
+  },
+  answersSelected: {
+    type: Array
   }
 })
 

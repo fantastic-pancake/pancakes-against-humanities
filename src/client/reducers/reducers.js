@@ -3,22 +3,29 @@ import io from 'socket.io-client';
 import { combineReducers } from 'redux';
 
 const initialState = {
-	blackCard: "",
-	whiteCards: [],
 	socket: io.connect()
 };
 
 const gameReducer = (state = initialState, action = {}) => {
-	// let copyState = state || initialState;
-	// copyState.socket.emit('test', "reducer component mounted");
-	// state = Object.assign({}, copyState);
-	// state.socket.emit('test', "reducer component mounted");
 
 	switch (action.type) {
 		case types.WHITE_CARD_CLICK_SUCCESS:
 			state.whiteCards = [];
 			state.whiteCards = state.whiteCards.concat(action.cardValue);
 			return state;
+		case types.LOGGED_IN:
+			console.log('ID: ', action.id);
+			window.location.href="/#/profile";
+			return {
+				...state,
+				id: action.id
+			};
+		case types.GAMES_OPEN:
+			console.log("GAMES_OPEN: ", action.gamesInProgress);
+			return {
+				...state,
+				gamesOpen: action.gamesInProgress
+			};
 		case types.START_GAME:
 			console.log("GAMEDATA: ", action.gameData);
 			return {
@@ -26,7 +33,9 @@ const gameReducer = (state = initialState, action = {}) => {
 				question: action.gameData.question,
 				answers: action.gameData.answers,
 				selectedAnswers: action.gameData.selectedAnswers,
-				czar: action.gameData.czar
+				czar: action.gameData.czar,
+				deckID: action.gameData.deckID,
+				creatorID: action.gameData.creatorID
 			};
 		case types.ANSWER_SELECTED:
 			console.log("SELECTEDANSWERS: ", action.selectedAnswers);

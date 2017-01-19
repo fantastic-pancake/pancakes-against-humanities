@@ -11,6 +11,7 @@ import mongoose from'mongoose';
 import path from "path";
 import fs from "fs";
 import {CardDatabase} from "./models/cards";
+import { shuffle } from "./shared/utils";
 
 var UserEnd = require('./UserEnd')
 var FB = require('./FB');
@@ -53,72 +54,88 @@ app.get("*", (req, res) => {
 	});
 });
 
-// function createNewGame(gameDataDB) {
-//   var question = gameDataDB[0].questions.splice(0,1)[0];
-//   var answers = gameData[0].answers;
-//   return {
-//     question: question,
-//     answers: answers,
-//     gameData: gameDataDB
-//   };
-// };
 
 var gameData;
 var selectedAnswers;
+var gamesInProgress = [];
 
-Game.find({}).exec(function(err, gameDataDB) {
-  if(err) console.log("err: ", err);
-  selectedAnswers = [];
-  gameData = gameDataDB;
-  gameData[0].currentQuestion = "";
-  // console.log("GAMEDATA!! ", gameData[0].questions);
+io.on('connection', function (socket) {
+  console.log('Client connected')
+  io.emit('message', {message: "message sent!!"})
+  console.log(prettyjson.render(socket.adapter.rooms, options));
 
-  io.on('connection', function (socket) {
-    console.log('Client connected')
-  	io.emit('message', {message: "message sent!!"})
-    console.log(prettyjson.render(socket.adapter.rooms, options));
-  	socket.on('newGame', function() {
-      console.log("GAMEDATA: ", Object.keys(gameData));
-      gameData[0].currentQuestion = gameData[0].questions.splice(0,1);
-      console.log("cQuestion", gameData[0].currentQuestion);
-      socket.emit('startGameData', {
-        question: gameData[0].currentQuestion,
-        answers: gameData[0].answers.splice(0,10),
-        czar: true
-      });
-  	});
-    socket.on('joinGame', function() {
-      console.log("cQuestion", gameData[0].currentQuestion);
+  socket.on('newGame', function(id) {
+    Game.findOne({}).exec(function(err, gameDataDB) {
+      console.log("GAMEDATA: ", gameDataDB._id);
+      if(err) console.log("err: ", err);
+      Game.create({
+        questions: shuffle(gameDataDB.questions),
+        answers: shuffle(gameDataDB.answers),
+        creatorID: id,
+        players: 1,
+        answersSelected: []
+        }, function(err, deck) {
+        if(err) console.log("DB ERROR: ", err);
+        gamesInProgress.push({deckID: deck._id, creatorID: deck.creatorID});
+        // console.log("QUESTION: ", deck.questions.splice(0,1));
+        socket.emit('startGameData', {
+          question: deck.questions.slice(0,1),
+          answers: deck.answers.slice(0,10),
+          deckID: deck._id,
+          creatorID: deck.creatorID,
+          czar: true
+        });
+      })
+    });
+  });
+
+  socket.on('loadOpenGames', function() {
+    socket.emit('gamesInProgress', gamesInProgress);
+  })
+  socket.on('joinGame', function(deckID) {
+    console.log("DECKID: ", deckID);
+    Game.findOneAndUpdate({_id: deckID}, {$inc: {players: 1}}, function(err, deck) {
+      if(err) console.log("DB ERROR: ", err);
+      let answers;
+      deck.players === 1 ?
+        answers = deck.answers.slice(0,10) :
+        answers = deck.answers.slice((10*deck.players)-9, (10*deck.players));
+      let question = deck.questions.slice(0,1);
       socket.emit('getGameData', {
-        question: gameData[0].currentQuestion,
-        answers: gameData[0].answers.splice(0,10),
+        question: question,
+        answers: answers,
+        deckID: deck._id,
+        creatorID: deck.creatorID,
         czar: false
       });
-    });
-    socket.on('answerSelected', function(answerSelected) {
-      selectedAnswers.push(answerSelected);
-      io.emit('selectedAnswers', {selectedAnswers: selectedAnswers});
     })
-    socket.on('czarSelection', function(czarSelection) {
-      io.emit('czarPick', {czarSelection: czarSelection});
+  });
+  socket.on('answerSelected', function(answerSelected) {
+    Game.findOneAndUpdate({_id: answerSelected.deckID}, {$push: {answersSelected: answerSelected.answer}}, {new: true},function(err, deck) {
+      if(err) console.log("DB ERROR: ", err);
+      io.emit('selectedAnswers', {selectedAnswers: deck.answersSelected});
     });
-  	socket.on('black', function(message) {
-  		console.log("3");
-  		console.log('Received message:', message + " " + socket.id.slice(8));
-  		io.sockets.emit('black', message);
-  	});
-    socket.on('chat-message', body => {
-      socket.broadcast.emit('chat-message', {
-        body,
-        from: 'Pancake User #' + socket.id.slice(5, 9)
-      });
+  })
+  socket.on('czarSelection', function(czarSelection) {
+    io.emit('czarPick', {czarSelection: czarSelection});
+  });
+  socket.on('black', function(message) {
+    console.log("3");
+    console.log('Received message:', message + " " + socket.id.slice(8));
+    io.sockets.emit('black', message);
+  });
+  socket.on('chat-message', body => {
+    console.log("chat message sent!");
+    socket.broadcast.emit('chat-message', {
+      body,
+      from: 'Pancake User #' + socket.id.slice(5, 9)
     });
-    socket.on('test', function(message) {
-      console.log("test confirmed from ", message, " from client: ", socket.id);
-    })
-  	socket.on('disconnect', function() {
-  	    console.log('user disconnected');
-  	});
+  });
+  socket.on('test', function(message) {
+    console.log("test confirmed from ", message, " from client: ", socket.id);
+  })
+  socket.on('disconnect', function() {
+      console.log('user disconnected');
   });
 });
 

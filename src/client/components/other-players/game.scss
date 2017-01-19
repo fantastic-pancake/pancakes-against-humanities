@@ -10,11 +10,7 @@
 	// background-position: top;
 }
 
-.nav {
-	position:absolute;
-}
-
-.game-data {
+.game-data-game{
 	float: left;
 	text-align: left;
 	margin-left: 20px;
@@ -24,4 +20,8 @@
 
 .game-nav {
 	width:100%;
+}
+
+.card-section {
+	width: 75%;
 }

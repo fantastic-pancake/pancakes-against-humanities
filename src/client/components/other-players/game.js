@@ -34,13 +34,15 @@ class Game extends Component {
 			<section className="game-container">
 				<div className="center">
 					<Chat />
-					<div className="game-data">
+					<div className="game-data-game">
 						<Score />
 						<Timer secondsRemaining="30"/>
-						<a href="#/"><button className="nav">Back to Home</button></a>
+						<a href="#/"><button>Back to Home</button></a>
 					</div>
-					<BlackCardContainer question={this.props.question}/>
-					<WhiteCardContainer answers={this.props.answers}/>
+					<section className="card-section">
+						<BlackCardContainer question={this.props.question}/>
+						<WhiteCardContainer answers={this.props.answers}/>
+					</section>
 				</div>
 			</section>
 		);

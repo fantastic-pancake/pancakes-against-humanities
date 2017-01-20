@@ -6,7 +6,7 @@
 	bottom: 0;
 	z-index: 100;
 	border-bottom: 2px solid $color-section-border;
-	background: $color-background;
+	background: black;
 
 	.title {
 		@include divider;

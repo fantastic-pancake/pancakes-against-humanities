@@ -4,13 +4,13 @@
 	height: 100%;
 	overflow: hidden;
 
-	> .inner {
-		display: flex;
-		height: 100%;
-		padding: 10px;
-		box-sizing: border-box;
-		flex-direction: row;
-	}
+	// > .inner {
+	// 	display: flex;
+	// 	height: 100%;
+	// 	padding: 10px;
+	// 	box-sizing: border-box;
+	// 	flex-direction: row;
+	// }
 
 	> .inner > .sidebar {
 		@include section;
@@ -86,3 +86,15 @@
 		}
 	}
 }
+
+
+body {
+	background-color: darkgray;
+}
+
+
+
+
+
+
+

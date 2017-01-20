@@ -11,11 +11,15 @@
 
 	&.black .inner {
 		background: #000;
+		background-image: url("../../../../public/pancake-syrup.png");
+		background-size: cover; 
 		color: #fff;
 	}
 
 	&.white .inner {
 		background: #fff;
+		background-image: url("../../../../public/pancakes.png");
+		background-size: cover; 
 		color: #000;
 	}
 

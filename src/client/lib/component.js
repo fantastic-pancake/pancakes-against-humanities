@@ -15,6 +15,7 @@ export class StoreProvider extends Component {
 		return Children.only(this.props.children);
 	}
 
+	// now, any item wrapped in this component can ask react for these items
 	getChildContext() {
 		const {stores, services} = this.props;
 		return {stores, services};
@@ -37,11 +38,13 @@ export class ContainerBase extends Component {
 		this._disposeFunctions.push(() => sub.unsubscribe());
 	}
 
+	// invoke the unsubscribe function
 	componentWillUnmount() {
 		this._disposeFunctions.forEach(d => d());
 		this._disposeFunctions = [];
 	}
 
+	// allow us to dispatch things without writing out a long line of code
 	dispatch(action) {
 		this.context.services.dispatcher.emit(action);
 	}

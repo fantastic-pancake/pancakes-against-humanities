@@ -34,7 +34,8 @@
 
 .c-player-list {
 	@include unlistify;
-
+	display: flex;
+	justify-content: space-around;
 	border-top: 1px solid $color-section-border;
 	position: relative;
 	flex-grow: 1;

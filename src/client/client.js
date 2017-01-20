@@ -15,7 +15,7 @@ import createStores from "./stores";
 // Services
 const dispatcher = new Dispatcher();
 const socket = io();
-const services = {dispatcher, socket};
+const services = {dispatcher, socket}; // services will be passed in to all of our stores
 
 if (IS_DEVELOPMENT) {
 	dispatcher.on("*", printAction);
@@ -30,6 +30,7 @@ const stores = createStores(services);
 // ----------------------------
 // Render
 function main() {
+	// we can have require anywhere in the code, and import only works at the top
 	const routes = require("./routes").default();
 	ReactDOM.render(
 		<StoreProvider stores={stores} services={services}>
@@ -54,6 +55,9 @@ main();
 
 // ----------------------------
 // Helpers
+// 
+// first print the action types
+// if the action contain properties other than status and type, print the actual action object
 function printAction(action) {
 	if (action.hasOwnProperty("status")) {
 		let style = null;

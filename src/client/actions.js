@@ -1,5 +1,7 @@
 export * from "../server/shared/actions";
 
+// client side actions
+
 // ------------------------
 // App Store
 export const DIALOG_SET = "DIALOG_SET";

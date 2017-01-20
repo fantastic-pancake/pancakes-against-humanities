@@ -21,7 +21,10 @@ class LoginDialog extends ContainerBase {
 	}
 
 	componentWillMount() {
+		// if we are logged in, go ahead and close this dialog
 		const {stores: {user}} = this.context;
+
+		// subscribe to opLogin
 		this.subscribe(user.opLogin$, opLogin => this.setState({opLogin}));
 		this.subscribe(user.details$, details => {
 			if (details.isLoggedIn)

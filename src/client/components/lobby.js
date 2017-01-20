@@ -57,7 +57,7 @@ class LobbySidebar extends ContainerBase {
 			<section className="c-lobby-sidebar">
 				<div className="m-sidebar-buttons">
 					{!opLogin.can ? null : 
-						<button className="m-button primary" onClick={this._login}>Login</button>}
+						<button onClick={this._login}>Login</button>}
 
 					{!opCreateGame.can ? null :
 						<button
@@ -76,7 +76,7 @@ function GameList({games, joinGame}) {
 	return (
 		<section className="c-game-list">
 			{games.length > 0 ? null : 
-				<div className="no-games">There are no games yet :(</div>}
+				<div className="no-games">There are currently no game rooms...</div>}
 
 			{games.map(game => 
 				<div className="game" key={game.id} onClick={() => joinGame(game)}>

@@ -3,15 +3,18 @@ import http from "http";
 import path from "path";
 import fs from "fs";
 import socketIo from "socket.io";
+import mongoose from 'mongoose';
 
 import {isDevelopment} from "./settings";
 import {CardDatabase} from "./model/cards";
 import {Client} from "./model/client";
 import {Application} from "./model/application";
+import FB from './fb';
 
 // ----------------------
 // Setup
 const app = express();
+app.use('/auth', FB);
 const server = new http.Server(app);
 const io = socketIo(server);
 
@@ -50,7 +53,17 @@ io.on("connection", socket => new Client(socket, cardsApp));
 
 // ----------------------
 // Startup
-const port = process.env.PORT || 3000;
-server.listen(port, () => {
-	console.log(`Started http server on ${port}`);
-});
+// const port = process.env.PORT || 3000;
+// server.listen(port, () => {
+// 	console.log(`Started http server on ${port}`);
+// });
+
+mongoose.Promise = global.Promise; //address depreciated mongoose library warning
+mongoose.connect(process.env.DATABASE_URI).then(function() {
+  const PORT = process.env.PORT || 3000
+  server.listen(PORT, () => {
+		console.log(`Started http server on ${PORT}`);
+	});
+}).catch(function(error) {
+  console.log("Server error: ", error)
+})

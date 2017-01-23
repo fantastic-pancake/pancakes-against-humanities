@@ -1,5 +1,10 @@
 # Pancakes Against Humanity
 
+### To Do:
+- Allow to login through facebook from game room
+- Write tests for all react components
+- Display user profile image in game list, player list and chat
+
 ## Motivation
 A pancake twist of [Cards Against Humanity](https://www.cardsagainsthumanity.com/) where users can play one another remotely using pancake themed cards while interacting over live chat.
 

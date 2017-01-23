@@ -65,7 +65,7 @@ class LobbySidebar extends ContainerBase {
 				return res.json();
 			}).then((data) => {
 				console.log("FB PROFILE DATA: ", data);
-				this.request(A.userLogin(data.facebook));
+				this.request(A.userLogin(data.facebook.name));
 			});
 		}
 	}

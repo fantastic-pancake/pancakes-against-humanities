@@ -5,26 +5,36 @@
 
 	cursor: default;
 	display: inline-block;
-	width: $width-card;
-	height: $height-card;
+	// width: $width-card;
+	// height: $height-card;
 	position: relative;
+
+	&.black {
+		width: ($width-card + 90px);
+	}
 
 	&.black .inner {
 		background: #000;
 		background-image: url("../../../../public/pancake-syrup.png");
-		background-size: cover; 
+		background-size: cover;
+		background-position: center;
 		color: #fff;
+		height: ($height-card + 90px);
+		padding-top: 100px;
+		text-align: center;
+		text-shadow: 0.5px 0 0 black, -0.5px 0 0 black, 0 0.5px 0 black, 0 -0.5px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
 	}
 
 	&.white .inner {
 		background: #fff;
 		background-image: url("../../../../public/pancakes.png");
-		background-size: cover; 
+		background-size: cover;
 		color: #000;
 	}
 
 	.inner {
 		padding: 10px;
+		padding-top: 31px;
 		box-sizing: border-box;
 		border-radius: 5px;
 		position: absolute;
@@ -34,6 +44,7 @@
 		height: 100%;
 		box-shadow: 2px 2px 3px rgba(0, 0, 0, .1);
 		transition: box-shadow 250ms linear;
+		text-align: center;
 	}
 
 	&.front {

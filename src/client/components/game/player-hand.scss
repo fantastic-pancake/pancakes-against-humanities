@@ -33,7 +33,8 @@
 		display: flex;
 		flex-wrap: wrap;
 		padding: 5px;
-		max-height: 310px;
+		max-height: 630px;
+		justify-content: stretch;
 		overflow-y: auto;
 
 		> .c-card {

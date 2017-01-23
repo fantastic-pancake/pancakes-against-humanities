@@ -4,13 +4,9 @@
 	height: 100%;
 	overflow: hidden;
 
-	// > .inner {
-	// 	display: flex;
-	// 	height: 100%;
-	// 	padding: 10px;
-	// 	box-sizing: border-box;
-	// 	flex-direction: row;
-	// }
+	> .inner {
+	 	height: 100%;
+	}
 
 	> .inner > .sidebar {
 		@include section;
@@ -37,6 +33,8 @@
 		position: relative;
 		display: flex;
 		flex-direction: column;
+		height: 90%;
+		width: 74.5%;
 
 		> div {
 			flex-grow: 1;

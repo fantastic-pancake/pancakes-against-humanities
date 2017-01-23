@@ -22,7 +22,11 @@
 
 	.c-chat {
 		flex: none;
-		height: 200px;
+		width: 25%;
+		right: 0;
+		top: 0;
+		position: fixed;
+		height: 100vh;
 	}
 }
 

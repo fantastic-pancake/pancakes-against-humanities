@@ -2,11 +2,12 @@
 
 .c-player-hand {
 	position: absolute;
-	width: 99%;
+	// width: 99%;
 	bottom: 0;
 	z-index: 100;
-	border-bottom: 2px solid $color-section-border;
+	// border-bottom: 2px solid $color-section-border;
 	background: black;
+	border-radius: 10px;
 
 	.title {
 		@include divider;
@@ -27,7 +28,7 @@
 
 	.cards {
 		box-sizing: border-box;
-		border: 2px solid $color-section-border;
+		// border: 2px solid $color-section-border;
 		border-top: none;
 		flex-grow: 1;
 		display: flex;

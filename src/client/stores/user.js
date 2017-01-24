@@ -11,14 +11,20 @@ const defaultDetails = {
 
 export default class UserStore {
 	constructor({dispatcher, socket}) {
-		this.details$ = dispatcher.on$(A.USER_DETAILS_SET)
-			.map(a => a.details)
-			.startWith(defaultDetails)
-			.publishReplay(1);
+		this.details$ = dispatcher.on$(A.USER_DETAILS_SET) // this action returns an observable
+			.map(a => a.details) // mapping over the observable
+			.startWith(defaultDetails) // start with the default obj, if you emit once
+			.publishReplay(1); //  emit without having to subscribe
 
-		this.details$.connect();
+		this.details$.subscribe(x => {
+			console.log(x);
+		})
 
-		this.details$.subscribe(details => 
+		this.details$.connect(); // tell the observable to start emitting
+
+
+		// details holds whatever is emitted
+		this.details$.subscribe(details => // use whatever the observable is emitting
 			Object.keys(details).forEach(k => this[k] = details[k]));
 
 		dispatcher.onRequest({

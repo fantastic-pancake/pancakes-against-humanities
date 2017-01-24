@@ -14,7 +14,7 @@ class LobbyContainer extends ContainerBase {
 	}
 
 	componentWillMount() {
-		const {stores: {lobby, app}} = this.context;
+		const {stores: {lobby, app}} = this.context; // context is coming from the containerBase
 		this.subscribe(lobby.opSendMessage$, opSendMessage => this.setState({opSendMessage}));
 		this.subscribe(lobby.view$, lobby => this.setState({lobby}));
 		this.subscribe(app.reconnected$, () => this.request(A.lobbyJoin()));

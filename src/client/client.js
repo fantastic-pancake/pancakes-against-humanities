@@ -31,9 +31,10 @@ const stores = createStores(services);
 // Render
 function main() {
 	// we can have require anywhere in the code, and import only works at the top
+	// giving access the store
 	const routes = require("./routes").default();
 	ReactDOM.render(
-		<StoreProvider stores={stores} services={services}>
+		<StoreProvider stores={stores} services={services}> 
 			<Router history={history}>
 				{routes}
 			</Router>

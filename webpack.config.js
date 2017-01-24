@@ -35,13 +35,14 @@ function createConfig(isDebug) {
 	};
 
 	const clientEntry = ["babel-polyfill", "./src/client/client.js"];
+	// const clientEntry = ["babel-polyfill", "./src/client/__test/testClient.js"];
 	let publicPath = "/build/";
 
 	if (isDebug) {
 		plugins.push(new webpack.HotModuleReplacementPlugin());
 		clientEntry.unshift(
 			"react-hot-loader/patch",
-			"webpack-dev-server/client?http://localhost:8080/", 
+			"webpack-dev-server/client?http://localhost:8080/",
 			"webpack/hot/only-dev-server");
 
 		publicPath = "http://localhost:8080/build/";

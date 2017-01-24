@@ -141,7 +141,7 @@ gulp.task(
 	"client:test",
 	gulp.series(
 		"client:build",
-		compileClientTests,
+		// compileClientTests,
 		testClient
 	));
 
@@ -162,7 +162,7 @@ function buildClient(cb) {
 		}
 
 		console.log(stats.toString(consoleStats));
-		compileClientTests()
+		// compileClientTests()
 		cb();
 	});
 }

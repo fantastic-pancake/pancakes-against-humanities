@@ -12,11 +12,11 @@ export default function PlayerHand(props) {
 			<div className={`title ${opSelectCard.can ? "is-active" : ""}`} onClick={toggle}>
 				<i className={`fa ${caretClass}`} />
 				{opSelectCard.error}
-		
+
 			</div>
 			<div className="cards">
 				{hand.map(card =>
-					<Card 
+					<Card
 						key={card.id}
 						isSelectable={opSelectCard.can && !opSelectCard.inProgress}
 						onClick={() => selectCard(card)}

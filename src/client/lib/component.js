@@ -17,7 +17,7 @@ export class StoreProvider extends Component {
 
 	// now, any item wrapped in this component can ask react for these items
 	getChildContext() {
-		const {stores, services} = this.props;
+		const {stores, services} = this.props; // getting stores from here
 		return {stores, services};
 	}
 }

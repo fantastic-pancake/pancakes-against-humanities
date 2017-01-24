@@ -16,10 +16,6 @@ export default class UserStore {
 			.startWith(defaultDetails) // start with the default obj, if you emit once
 			.publishReplay(1); //  emit without having to subscribe
 
-		this.details$.subscribe(x => {
-			console.log(x);
-		})
-
 		this.details$.connect(); // tell the observable to start emitting
 
 

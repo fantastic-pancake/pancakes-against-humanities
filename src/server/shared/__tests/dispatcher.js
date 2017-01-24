@@ -7,6 +7,8 @@ const testAction1 = (arg) => ({type: TEST_ACTION_1, arg});
 const TEST_ACTION_2 = "TEST_ACTION_2";
 const testAction2 = () => ({type: TEST_ACTION_2});
 
+console.log("Dispatcher");
+
 describe("dispatcher", () => {
 	let dispatcher;
 	beforeEach(() => dispatcher = new Dispatcher());
@@ -52,7 +54,7 @@ describe("dispatcher", () => {
 		dispatcher.on$(TEST_ACTION_1).subscribe(action => action1Arg = action.arg);
 
 		dispatcher.emit(testAction1(42));
-		
+
 		expect(action1Arg).toBe(42);
 	});
 });

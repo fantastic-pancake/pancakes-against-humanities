@@ -1,6 +1,8 @@
 import _ from "lodash";
 import {makeDiff, mergeDiff, IS_UNCHANGED} from "../diff";
 
+console.log("DiffTests");
+
 runDiffTests({
 	scalar: {
 		"changed on numbers": [

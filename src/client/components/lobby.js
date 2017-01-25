@@ -48,6 +48,7 @@ class LobbySidebar extends ContainerBase {
 		const {stores: {user, game}} = this.context;
 		this.subscribe(user.opLogin$, opLogin => this.setState({opLogin}));
 		this.subscribe(game.opCreateGame$, opCreateGame => this.setState({opCreateGame}));
+
 		if(this.props.location.search) {
 			console.log(this.props.location.search);
 			const userId = this.props.location.search.split("?")[1];
@@ -65,6 +66,7 @@ class LobbySidebar extends ContainerBase {
 				return res.json();
 			}).then((data) => {
 				console.log("FB PROFILE DATA: ", data);
+				this.setState({ facebookPic: data.facebook.profilePic });
 				this.request(A.userLogin(data.facebook.name));
 			});
 		}
@@ -90,6 +92,8 @@ class LobbySidebar extends ContainerBase {
 							className="m-button good">
 							Create Game
 						</button>}
+
+					<img src={this.state.facebookPic} />
 				</div>
 			</section>
 		);

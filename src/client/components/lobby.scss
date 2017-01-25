@@ -41,8 +41,6 @@
 			margin-top: -1px;
 			margin-bottom: 5px;
 			font-size: $header-font-size;
-			// width: 100px;
-			// background: #eee;
 			padding: 3px;
 		}
 
@@ -52,9 +50,6 @@
 			padding: 0 10px;
 			text-align: left;
 			list-style: none;
-			// font-weight: bold;
-			// color: #eee;
-			// font-size: larger;
 			text-shadow: 1px 1px 2px #EFBD1B, 0 0 1em #EFBD1B, 0 0 0.2em #EFBD1B;
 
 		}
@@ -67,8 +62,6 @@
 		}
 
 		&:hover {
-			// background: #fff;
-			// box-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
 			box-shadow: 2px 2px 4px black;
 		}
 	}
@@ -82,7 +75,6 @@
 
 .loginButton {
 	background: linear-gradient(to bottom, #728CC5, #4764A7);
-	// text-shadow: 0.25px 0 0 #8597C3, -0.25px 0 0 #8597C3, 0 0.25px 0 #8597C3, 0 -0.25px 0 #8597C3, 0.5px 0.5px #8597C3, -0.5px -0.5px 0 #8597C3, 0.5px -0.5px 0 #8597C3, -0.5px 0.5px 0 #8597C3;
 	height: 40px;
 	width: 110px;
 	border: none;

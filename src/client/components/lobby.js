@@ -97,6 +97,7 @@ class LobbySidebar extends ContainerBase {
 }
 
 function GameList({games, joinGame}) {
+	console.log("games: ", games);
 	return (
 		<section className="c-game-list">
 			{games.length > 0 ? null :
@@ -106,7 +107,9 @@ function GameList({games, joinGame}) {
 				<div className="game" key={game.id} onClick={() => joinGame(game)}>
 					<div className="title">{game.title}</div>
 					<div className="players">
-						{game.players.join(", ")}
+						{game.players.map((player) => {
+							return <li>{player}</li>
+						})}
 					</div>
 					<div className="join-game">Join Game</div>
 				</div>)}

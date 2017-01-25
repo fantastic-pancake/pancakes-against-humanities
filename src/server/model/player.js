@@ -19,6 +19,7 @@ export class Player extends RoomBase {
 		const {round} = this.game;
 		return {
 			id: this.id,
+			profilePic: this.profilePic,
 			name: this.name,
 			score: this.score,
 
@@ -30,6 +31,7 @@ export class Player extends RoomBase {
 
 	constructor(game, id, name) {
 		super(A.VIEW_PLAYER);
+		this.profilePic = "";
 		this.name = name;
 		this.id = id;
 		this.game = game;

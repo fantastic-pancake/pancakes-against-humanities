@@ -77,9 +77,9 @@ class LobbySidebar extends ContainerBase {
 			<section className="c-lobby-sidebar">
 				<div className="m-sidebar-buttons">
 					{!opLogin.can ? null :
-						<div>
-							<button onClick={this._login}>Login</button>
-							<button><a href="auth/facebook">Login with Facebook</a></button>
+						<div className="buttonContainer">
+							<button className="loginButton" onClick={this._login}>Local Login</button>
+							<button className="fbLoginButton" onClick={() => {window.location.href="auth/facebook"}}></button>
 						</div>
 					}
 

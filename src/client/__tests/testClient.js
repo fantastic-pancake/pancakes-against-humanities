@@ -1,6 +1,6 @@
 import React from 'react';
 const TestUtils = React.addons.TestUtils;
-import {LobbyContainer, GameList} from '../components/lobby';
+import {LobbyContainer, GameList} from '../../components/lobby';
 
 
 console.log('Client side: .....')

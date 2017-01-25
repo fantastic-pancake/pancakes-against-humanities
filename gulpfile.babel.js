@@ -141,7 +141,7 @@ gulp.task(
 	"client:test",
 	gulp.series(
 		"client:build",
-		// compileClientTests,
+		compileClientTests,
 		testClient
 	));
 

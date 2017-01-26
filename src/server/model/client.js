@@ -9,7 +9,8 @@ export class Client extends Dispatcher {
 		return {
 			id: this.id,
 			isLoggedIn: this.isLoggedIn,
-			name: this.name
+			name: this.name,
+			profilePic: this.profilePic
 		};
 	}
 
@@ -18,6 +19,7 @@ export class Client extends Dispatcher {
 		this.id = socket.id;
 		this.isLoggedIn = false;
 		this.name = null;
+		this.profilePic = "http://orig11.deviantart.net/b47b/f/2014/235/e/2/cat_icon_by_shiro_crow-d7wbsll.gif";
 		this.app = app;
 		this.handlers = null;
 
@@ -37,13 +39,16 @@ export class Client extends Dispatcher {
 		this._socket.emit("action", action);
 	}
 
-	login(name) {
+	login(name, profilePic) {
+		console.log("NAME: ", name, "PROFILEPIC: ", profilePic);
 		const validator = validateName(name);
 		if (validator.didFail)
 			return validator;
 
 		this.isLoggedIn = true;
 		this.name = name;
+		this.profilePic = profilePic || this.profilePic;
+		console.log("this.profilePic ", this.profilePic);
 		this.emit(A.userDetailsSet(this.details));
 
 		if (this.handlers)
@@ -74,7 +79,7 @@ export class Client extends Dispatcher {
 
 		this.onRequest({
 			[A.USER_LOGIN]: (action) => {
-				const validator = this.login(action.name);
+				const validator = this.login(action.name, action.profilePic);
 				this.respond(action, validator);
 			},
 
@@ -89,6 +94,7 @@ export class Client extends Dispatcher {
 			},
 
 			[A.GAME_CREATE]: (action) => {
+				console.log("SERVERSIDE GAME CREATE: ", action);
 				if (!this.isLoggedIn) {
 					this.fail(action, "You must be logged in");
 					return;
@@ -110,6 +116,7 @@ export class Client extends Dispatcher {
 			},
 
 			[A.GAME_JOIN]: (action) => {
+				console.log("SERVERSIDE GAME JOIN: ", action);
 				if (this.handlers instanceof GameHandlers && this.handlers.game.id == action.gameId) {
 					this.succeed(action);
 					return;

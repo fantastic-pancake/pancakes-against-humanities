@@ -60,9 +60,10 @@ export class Game extends RoomBase {
 		});
 	}
 
-	addPlayer(id, name) {
+	addPlayer(id, name, profilePic) {
+		console.log("Game: id, name, profilePic: ", id, name, profilePic);
 		this._ensureActive();
-		const player = new Player(this, id, name);
+		const player = new Player(this, id, name, profilePic);
 		this._tick(() => this.players.push(player));
 		this.app.dispatcher.emit(A.gameSummaryChanged(this.id, this.summary));
 		return player;
@@ -75,7 +76,7 @@ export class Game extends RoomBase {
 			this.messages.push({
 				index: this.messages.length + 1,
 				name: client.name,
-				profilePic: "http://orig11.deviantart.net/b47b/f/2014/235/e/2/cat_icon_by_shiro_crow-d7wbsll.gif",
+				profilePic: client.profilePic,
 				message
 			});
 		});

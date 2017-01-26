@@ -5,7 +5,8 @@ import * as A from "../actions";
 const defaultDetails = {
 	isLoggedIn: false,
 	id: null,
-	name: null
+	name: null,
+	profilePic: 'http://orig11.deviantart.net/b47b/f/2014/235/e/2/cat_icon_by_shiro_crow-d7wbsll.gif'
 };
 
 export default class UserStore {
@@ -20,7 +21,8 @@ export default class UserStore {
 
 		// details holds whatever is emitted
 		this.details$.subscribe(details => // use whatever the observable is emitting
-			Object.keys(details).forEach(k => this[k] = details[k]));
+			{console.log("DETAILS: ", details);
+			Object.keys(details).forEach(k => this[k] = details[k])});
 
 		dispatcher.onRequest({
 			[A.USER_LOGIN]: (action) => {

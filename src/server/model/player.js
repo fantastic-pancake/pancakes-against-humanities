@@ -23,16 +23,15 @@ export class Player extends RoomBase {
 			profilePic: this.profilePic,
 			name: this.name,
 			score: this.score,
-
 			isCzar: round ? round.czar == this : false,
 			isPlaying: round ? round.isPlayerPlaying(this) : false,
 			isWinner: (round && round.winningStack) ? round.winningStack.player == this : false
 		};
 	}
 
-	constructor(game, id, name) {
+	constructor(game, id, name, profilePic) {
 		super(A.VIEW_PLAYER);
-		this.profilePic = "";
+		this.profilePic = profilePic;
 		this.name = name;
 		this.id = id;
 		this.game = game;

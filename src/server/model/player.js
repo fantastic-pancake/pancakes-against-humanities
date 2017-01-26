@@ -15,6 +15,7 @@ export class Player extends RoomBase {
 		};
 	}
 
+	// added profile pic to the player model
 	get summary() {
 		const {round} = this.game;
 		return {

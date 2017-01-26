@@ -68,12 +68,14 @@ export class Game extends RoomBase {
 		return player;
 	}
 
+	// TODO: check if player model has pic here
 	sendMessage(client, message) {
 		this._ensureActive();
 		this._tick(() => {
 			this.messages.push({
 				index: this.messages.length + 1,
 				name: client.name,
+				profilePic: "http://orig11.deviantart.net/b47b/f/2014/235/e/2/cat_icon_by_shiro_crow-d7wbsll.gif",
 				message
 			});
 		});

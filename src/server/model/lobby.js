@@ -29,10 +29,12 @@ export class Lobby extends RoomBase {
 		if (!client.isLoggedIn)
 			throw new Error("Client must be logged in");
 
+		// TODO: check if client model has profile pic 
 		this._tick(() => {
 			this.messages.push({
 				index: this.messages.length + 1,
 				name: client.name,
+				profilePic: "http://orig11.deviantart.net/b47b/f/2014/235/e/2/cat_icon_by_shiro_crow-d7wbsll.gif",
 				message
 			});
 		});

@@ -61,7 +61,6 @@ export class Game extends RoomBase {
 	}
 
 	addPlayer(id, name, profilePic) {
-		console.log("Game: id, name, profilePic: ", id, name, profilePic);
 		this._ensureActive();
 		const player = new Player(this, id, name, profilePic);
 		this._tick(() => this.players.push(player));

@@ -40,7 +40,6 @@ export class Client extends Dispatcher {
 	}
 
 	login(name, profilePic) {
-		console.log("NAME: ", name, "PROFILEPIC: ", profilePic);
 		const validator = validateName(name);
 		if (validator.didFail)
 			return validator;
@@ -48,7 +47,6 @@ export class Client extends Dispatcher {
 		this.isLoggedIn = true;
 		this.name = name;
 		this.profilePic = profilePic || this.profilePic;
-		console.log("this.profilePic ", this.profilePic);
 		this.emit(A.userDetailsSet(this.details));
 
 		if (this.handlers)
@@ -94,7 +92,6 @@ export class Client extends Dispatcher {
 			},
 
 			[A.GAME_CREATE]: (action) => {
-				console.log("SERVERSIDE GAME CREATE: ", action);
 				if (!this.isLoggedIn) {
 					this.fail(action, "You must be logged in");
 					return;
@@ -116,7 +113,6 @@ export class Client extends Dispatcher {
 			},
 
 			[A.GAME_JOIN]: (action) => {
-				console.log("SERVERSIDE GAME JOIN: ", action);
 				if (this.handlers instanceof GameHandlers && this.handlers.game.id == action.gameId) {
 					this.succeed(action);
 					return;

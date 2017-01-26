@@ -94,7 +94,6 @@ class GameSidebar extends ContainerBase {
 }
 
 function PlayerList({players}) {
-	console.log("players: ", players);
 	return (
 		<ul className="c-player-list">
 			{players.map(player => {

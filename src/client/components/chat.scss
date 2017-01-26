@@ -15,7 +15,7 @@ $author-width: 100px;
 
 	&:after {
 		background: darken($color-background, 5%);
-		width: $author-width;
+		width: 120px;
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -51,7 +51,7 @@ $author-width: 100px;
 
 			.message {
 				margin-top: 18px;
-				padding-left: 10px;
+				padding-left: 20px;
 			}
 		}
 	}

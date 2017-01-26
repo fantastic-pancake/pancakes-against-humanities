@@ -74,7 +74,7 @@ class LobbySidebar extends ContainerBase {
 	}
 
 	render() {
-		const {opLogin, opCreateGame} = this.state;
+		const {opLogin, opCreateGame, details} = this.state;
 
 		return (
 			<section className="c-lobby-sidebar">
@@ -96,8 +96,8 @@ class LobbySidebar extends ContainerBase {
 								Create Game
 							</button>
 							<div className="identity">
-								<img src={this.state.details.profilePic} />
-								<div className="name">{this.state.details.name}</div>
+								<img src={details.profilePic} />
+								<div className="name">{details.name}</div>
 							</div>
 						</div>
 					}

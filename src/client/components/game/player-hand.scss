@@ -2,12 +2,13 @@
 
 .c-player-hand {
 	position: absolute;
-	// width: 99%;
-	bottom: 0;
+	width: 100%;
+	bottom: 17px;
 	z-index: 100;
 	// border-bottom: 2px solid $color-section-border;
 	background: black;
-	border-radius: 10px;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
 	margin-bottom: 10px;
 
 	.title {
@@ -29,8 +30,8 @@
 
 	.cards {
 		box-sizing: border-box;
-		// border: 2px solid $color-section-border;
 		margin-left: 44px;
+		margin-bottom: 11px;
 		border-top: none;
 		flex-grow: 1;
 		display: flex;

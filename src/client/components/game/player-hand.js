@@ -15,7 +15,7 @@ export default function PlayerHand(props) {
 
 			</div>
 			<div className="cards">
-				{hand.map(card =>
+				{hand.map((card, key) =>
 					<Card
 						key={card.id}
 						isSelectable={opSelectCard.can && !opSelectCard.inProgress}
@@ -23,7 +23,9 @@ export default function PlayerHand(props) {
 						type="white"
 						card={card}
 						style="small"
-						canZoom />)}
+						canZoom 
+						floating
+						id={key} />)}
 			</div>
 		</div>
 	);

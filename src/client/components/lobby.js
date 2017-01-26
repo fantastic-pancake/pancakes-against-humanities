@@ -121,8 +121,8 @@ function GameList({games, joinGame}) {
 				<div className="game" key={game.id} onClick={() => joinGame(game)}>
 					<div className="title">{game.title}</div>
 					<div className="players">
-						{game.players.map((player) => {
-							return <li>{player}</li>
+						{game.players.map((player, index) => {
+							return <li key={index}>{player}</li>
 						})}
 					</div>
 					<div className="join-game">Join Game</div>

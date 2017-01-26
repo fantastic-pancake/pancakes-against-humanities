@@ -16,7 +16,7 @@ class LoginDialog extends ContainerBase {
 
 		this._login = (e) => {
 			e.preventDefault();
-			const profilePic = "";
+			const profilePic = "http://orig11.deviantart.net/b47b/f/2014/235/e/2/cat_icon_by_shiro_crow-d7wbsll.gif";
 			this.request(A.userLogin(this._username.value, profilePic));
 		};
 	}

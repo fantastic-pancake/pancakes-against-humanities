@@ -4,7 +4,6 @@
 	@include section;
 	margin-bottom: 10px;
 	flex-grow: 1;
-	width: 100%;
 
 	> h1 .error {
 		color: $color-bad;
@@ -46,8 +45,8 @@
 	}
 
 	.start-game {
-		width: 100%;
 		text-align: center;
+		background: #1976D2 !important; 
 	}
 
 	&.enabled .sets-list > li {

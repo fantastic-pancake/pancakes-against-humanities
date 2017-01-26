@@ -118,3 +118,80 @@
 		}
 	}
 }
+
+.floating{
+    float: left;
+    -webkit-animation-name: Floatingx;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-name: Floating;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: ease-in-out;
+    margin-left: 30px;
+    margin-top: 5px;
+
+}
+
+@-webkit-keyframes Floatingx{
+    from {-webkit-transform:translate(0, 0px);}
+    65% {-webkit-transform:translate(0, 5px);}
+    to {-webkit-transform: translate(0, -0px);    }    
+}
+    
+@-moz-keyframes Floating{
+    from {-moz-transform:translate(0, 0px);}
+    65% {-moz-transform:translate(0, 5px);}
+    to {-moz-transform: translate(0, -0px);}    
+}
+
+[id="0"] {
+	-webkit-animation-delay: .2s;
+	animation-delay: .2s;
+}
+
+[id="1"] {
+	-webkit-animation-delay: .4s;
+	animation-delay: .4s;
+}
+
+[id="2"] {
+	-webkit-animation-delay: .6s;
+	animation-delay: .6s;
+}
+
+[id="3"] {
+	-webkit-animation-delay: 8s;
+	animation-delay: .8s;
+}
+
+[id="4"] {
+	-webkit-animation-delay: 1.0s;
+	animation-delay: 1.0s;
+}
+
+[id="9"] {
+	-webkit-animation-delay: 2.0s;
+	animation-delay: 2.0s;
+}
+
+[id="8"] {
+	-webkit-animation-delay: 1.8s;
+	animation-delay: 1.8s;
+}
+
+[id="7"] {
+	-webkit-animation-delay: 1.6s;
+	animation-delay: 1.6s;
+}
+
+[id="6"] {
+	-webkit-animation-delay: 1.4s;
+	animation-delay: 1.4s;
+}
+
+[id="5"] {
+	-webkit-animation-delay: 1.2s;
+	animation-delay: 1.2s;
+}

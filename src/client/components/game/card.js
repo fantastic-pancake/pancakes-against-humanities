@@ -3,14 +3,15 @@ import "./card.scss";
 import React from "react";
 
 export default function Card(props) {
-	const {isSelectable = false, onClick, type, card, style = "default", canZoom = false} = props;
+	const {id, isSelectable = false, onClick, type, card, style = "default", canZoom = false, floating = false} = props;
 	const classes = [
 		"c-card",
 		type,
 		card ? "front" : "back",
 		`style-${style}`,
 		canZoom ? "can-zoom" : "",
-		isSelectable ? "is-selectable" : ""
+		isSelectable ? "is-selectable" : "",
+		floating ? "floating" : ""
 	];
 
 	const click = () => {
@@ -19,7 +20,7 @@ export default function Card(props) {
 	};
 
 	return (
-		<div className={classes.join(" ")} onDoubleClick={click}>
+		<div id={id} className={classes.join(" ")} onDoubleClick={click}>
 			{!card
 				? <div className="inner">Cards</div>
 				: <div className="inner">

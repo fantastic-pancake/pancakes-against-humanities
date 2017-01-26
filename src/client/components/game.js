@@ -12,7 +12,7 @@ class GameContainer extends ContainerBase {
 	constructor(props) {
 		super(props);
 
-		this._sendMessage = message => 
+		this._sendMessage = message =>
 			this.request(A.gameSendMessage(this.state.game.id, message));
 	}
 
@@ -94,6 +94,7 @@ class GameSidebar extends ContainerBase {
 }
 
 function PlayerList({players}) {
+	console.log("players: ", players);
 	return (
 		<ul className="c-player-list">
 			{players.map(player => {
@@ -101,6 +102,7 @@ function PlayerList({players}) {
 				return (
 					<li key={player.id} className={cls}>
 						<div className="details">
+							<img src={player.profilePic} />
 							<div className="name">{player.name}</div>
 							<div className="score">
 								{player.score}

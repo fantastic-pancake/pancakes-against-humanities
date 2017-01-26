@@ -52,7 +52,7 @@ export default class GameHandlers extends HandlerBase {
 	}
 
 	onLogin() {
-		this.player = this.game.addPlayer(this.client.id, this.client.name);
+		this.player = this.game.addPlayer(this.client.id, this.client.name, this.client.profilePic);
 		this.onDispose(
 			this.player.addClient(this.client),
 			() => this.player.dispose());

@@ -1,5 +1,5 @@
 import _ from "lodash";
-import {Observable, BehaviorSubject} from "rxjs";
+import {Observable} from "rxjs";
 import {mapOp$} from "shared/observable";
 import * as A from "../actions";
 import {createView$} from "../lib/stores";

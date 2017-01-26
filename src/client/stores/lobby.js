@@ -1,4 +1,3 @@
-import {Observable} from "rxjs";
 import {Validator} from "shared/validation";
 import {validateMessage} from "shared/validation/chat";
 import {mapOp$} from "shared/observable";

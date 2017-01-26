@@ -50,7 +50,7 @@ class LobbySidebar extends ContainerBase {
 		this.subscribe(game.opCreateGame$, opCreateGame => this.setState({opCreateGame}));
 
 		// TODO: change cat picture to facebook picture provided by fb login
-		this.setState({ facebookPic: 'http://orig11.deviantart.net/b47b/f/2014/235/e/2/cat_icon_by_shiro_crow-d7wbsll.gif'})
+		this.setState({ facebookPic: 'http://orig11.deviantart.net/b47b/f/2014/235/e/2/cat_icon_by_shiro_crow-d7wbsll.gif'});
 
 		if(this.props.location.search) {
 			console.log(this.props.location.search);
@@ -86,7 +86,7 @@ class LobbySidebar extends ContainerBase {
 					{!opLogin.can ? null :
 						<div className="buttonContainer">
 							<button className="loginButton" onClick={this._login}>Local Login</button>
-							<button className="fbLoginButton" onClick={() => {window.location.href="auth/facebook"}}></button>
+							<button className="fbLoginButton" onClick={() => {window.location.href="auth/facebook";}}></button>
 						</div>
 
 					}
@@ -122,7 +122,7 @@ function GameList({games, joinGame}) {
 					<div className="title">{game.title}</div>
 					<div className="players">
 						{game.players.map((player, index) => {
-							return <li key={index}>{player}</li>
+							return <li key={index}>{player}</li>;
 						})}
 					</div>
 					<div className="join-game">Join Game</div>

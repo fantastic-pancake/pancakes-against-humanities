@@ -88,17 +88,22 @@ class LobbySidebar extends ContainerBase {
 							<button className="loginButton" onClick={this._login}>Local Login</button>
 							<button className="fbLoginButton" onClick={() => {window.location.href="auth/facebook"}}></button>
 						</div>
+
 					}
 
 					{!opCreateGame.can ? null :
-						<button
-							onClick={this._createGame}
-							disabled={opCreateGame.inProgress}
-							className="m-button good">
-							Create Game
-						</button>}
+						<div>
+							<button
+								onClick={this._createGame}
+								disabled={opCreateGame.inProgress}
+								className="m-button good">
+								Create Game
+							</button>
+							<img src={this.state.facebookPic} />
+						</div>
+					}
 
-					<img src={this.state.facebookPic} />
+					
 				</div>
 			</section>
 		);

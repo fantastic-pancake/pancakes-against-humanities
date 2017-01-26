@@ -21,8 +21,7 @@ export default class UserStore {
 
 		// details holds whatever is emitted
 		this.details$.subscribe(details => // use whatever the observable is emitting
-			{console.log("DETAILS: ", details);
-			Object.keys(details).forEach(k => this[k] = details[k])});
+			Object.keys(details).forEach(k => this[k] = details[k]));
 
 		dispatcher.onRequest({
 			[A.USER_LOGIN]: (action) => {

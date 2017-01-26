@@ -11,7 +11,6 @@ var FB_CLIENTSECRET = process.env.FB_CLIENTSECRET;
 var FB_CALLBACK_URL = process.env.FB_CALLBACK_URL;
 
 passport.serializeUser(function(user, done) {
-  console.log("user: ", user);
     done(null, user.id);
 });
 
@@ -29,7 +28,6 @@ passport.use(new Strategy({
     },
     // facebook will send back the token and profile
     function(token, refreshToken, profile, done) {
-      console.log("fb auth accessed");
       // asynchronous
       process.nextTick(function() {
         // find the user in the database based on their facebook id

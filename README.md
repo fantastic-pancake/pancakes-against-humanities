@@ -4,6 +4,8 @@
 - Allow to login through facebook from game room
 - Write tests for all react components
 - Display user profile image in game list, player list and chat
+- Fix up the chat box so that chat messages scroll correctly
+- Finalize CSS
 
 ## Motivation
 A pancake twist of [Cards Against Humanity](https://www.cardsagainsthumanity.com/) where users can play one another remotely using pancake themed cards while interacting over live chat.
@@ -32,6 +34,8 @@ This application is built in React, using the RxJS library to create and subscri
 
 Tech Used
 - HTML5/CSS3
+- Gulp/Webpack/Babel
+- Jasmine
 - React
 - RxJS
 - Node/Express
@@ -80,7 +84,7 @@ Tech Used
     - request made using `.emit("disconnect")`
   - `.on("action", <action>)` : triggers action in recipient
     - request made using `.emit("action" <action>)`
-    - [shared actions] (https://github.com/fantastic-pancake/pancakes-against-humanities/blob/master/src/server/shared/actions.js) include:
+    - [shared actions] : (https://github.com/fantastic-pancake/pancakes-against-humanities/blob/master/src/server/shared/actions.js) include:
       - STATUS_REQUEST: logs request made
       - STATUS_FAIL: logs request failed
       - STATUS_SUCCESS: logs request succeeded

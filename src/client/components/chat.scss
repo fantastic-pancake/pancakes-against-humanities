@@ -30,9 +30,9 @@ $author-width: 100px;
 		flex-grow: 1;
 		z-index: 100;
 		overflow-y: scroll;
-		bottom: 0;
+		bottom: 1;
 	    position: absolute;
-	    margin-bottom: 30px;
+	   	padding-left: 6px;
     	width: 100%;
 
 		> li {
@@ -40,15 +40,17 @@ $author-width: 100px;
 			display: flex;
 
 			.author {
-				width: $author-width;
 				text-align: right;
+				padding-left: 10px;
+				
 				padding-right: 5px;
 				box-sizing: border-box;
 				align-self: center;
 			}
 
 			.message {
-				padding-left: 5px;
+				margin-top: 18px;
+				padding-left: 20px;
 			}
 		}
 	}

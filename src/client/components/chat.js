@@ -50,6 +50,7 @@ export default class Chat extends Component {
 				<ul className="messages" ref={c => this._messages = c}>
 					{messages.map(message => 
 						<li key={message.index}>
+							<img src={message.profilePic} />
 							<span className="author">{message.name}</span>
 							<span className="message">{message.message}</span>
 						</li>)}

@@ -48,6 +48,10 @@ class LobbySidebar extends ContainerBase {
 		const {stores: {user, game}} = this.context;
 		this.subscribe(user.opLogin$, opLogin => this.setState({opLogin}));
 		this.subscribe(game.opCreateGame$, opCreateGame => this.setState({opCreateGame}));
+
+		// TODO: change cat picture to facebook picture provided by fb login
+		this.setState({ facebookPic: 'http://orig11.deviantart.net/b47b/f/2014/235/e/2/cat_icon_by_shiro_crow-d7wbsll.gif'})
+
 		if(this.props.location.search) {
 			console.log(this.props.location.search);
 			const userId = this.props.location.search.split("?")[1];
@@ -65,6 +69,9 @@ class LobbySidebar extends ContainerBase {
 				return res.json();
 			}).then((data) => {
 				console.log("FB PROFILE DATA: ", data);
+
+				// TODO: make this a ternary statement depending on whether fb pic is available or not
+				this.setState({ facebookPic: data.facebook.profilePic });
 				this.request(A.userLogin(data.facebook.name));
 			});
 		}
@@ -90,6 +97,8 @@ class LobbySidebar extends ContainerBase {
 							className="m-button good">
 							Create Game
 						</button>}
+
+					<img src={this.state.facebookPic} />
 				</div>
 			</section>
 		);

@@ -10,7 +10,7 @@ export class Round {
 	}
 
 	get areAllStacksFinished() {
-		return _.every(this.stacks, s => s.player == this.czar || this.isStackFinished(s));
+		return _.every(this.stacks, s => this.isStackFinished(s));
 	}
 
 	constructor(blackCard, czar, players) {
@@ -18,20 +18,17 @@ export class Round {
 		this.blackCard = blackCard;
 		this.czar = czar;
 		this.stackList = [];
+		this.stacks = {};
 
-		let stackId = 0;
-		this.stacks = players
+		players
 			.filter(p => p != czar)
-			.reduce((obj, player) => {
-				stackId++;
-				obj[stackId] = {
-					id: stackId,
-					cards: [],
-					player
-				};
+			.forEach(p => this.addStack(p));
 
-				return obj;
-			}, {});
+	}
+
+	addStack(player) {
+		const stackId = _.size(this.stacks) + 1;
+		this.stacks[stackId] = {id: stackId, cards: [], player};
 	}
 
 	getStack(stackOrStackId) {
@@ -77,9 +74,13 @@ export class Round {
 		const index = this.stackList.indexOf(stack);
 
 		if (index != -1)
-			this.stackList.slpice(index, 1);
+			this.stackList.splice(index, 1);
 
 		delete this.stacks[stack.id];
+	}
+
+	removeStackByPlayerId(playerId) {
+		this.removeStack(this.getStackByPlayerId(playerId));
 	}
 
 	hasPlayerPlayed(playerOrPlayerId) {

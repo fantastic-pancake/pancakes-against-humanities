@@ -55,7 +55,15 @@ export class Game extends RoomBase {
 			if (playerIndex == -1)
 				return;
 
-			this._tick(() => this.players.splice(playerIndex, 1));
+			this._tick(() => {
+				// removing from stack array
+				if (this.round) {
+					this.round.removeStackByPlayerId(playerId);
+				}
+				
+				this.players.splice(playerIndex, 1);
+			});
+
 			this.app.dispatcher.emit(A.gameSummaryChanged(this.id, this.summary));
 		});
 	}
@@ -63,7 +71,20 @@ export class Game extends RoomBase {
 	addPlayer(id, name, profilePic) {
 		this._ensureActive();
 		const player = new Player(this, id, name, profilePic);
-		this._tick(() => this.players.push(player));
+		this._tick(() => {
+			this.players.push(player);
+
+			if (this.step !== A.STEP_SETUP && this.round) {
+				player.onGameStart();
+				this.round.addStack(player);
+
+				// adding the stack from the round to the player
+				player.stack = this.round.getStackByPlayerId(player.id);
+			}
+		});
+
+		// if round is running, and player joins..
+		
 		this.app.dispatcher.emit(A.gameSummaryChanged(this.id, this.summary));
 		return player;
 	}

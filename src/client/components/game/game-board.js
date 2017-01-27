@@ -10,12 +10,12 @@ import Stacks from "./stacks";
 
 const TIMER_REASONS = {
 	[A.WAIT_GAME_OVER]: "game over",
-	[A.WAIT_REASON_GAME_FINISHED]: "it ended",
+	[A.WAIT_REASON_GAME_FINISHED]: "game ended",
 	[A.WAIT_REASON_TOO_FEW_PLAYERS]: "there are too few players",
 
-	[A.WAIT_ROUND_OVER]: "round over",
+	[A.WAIT_ROUND_OVER]: "round finished",
 	[A.WAIT_REASON_CZAR_LEFT]: "the czar left",
-	[A.WAIT_REASON_ROUND_FINISHED]: "it ended"
+	[A.WAIT_REASON_ROUND_FINISHED]: "next round starting"
 };
 
 export default class GameBoard extends ContainerBase {

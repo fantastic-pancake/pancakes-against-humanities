@@ -89,10 +89,10 @@ Tech Used
       - STATUS_FAIL: logs request failed
       - STATUS_SUCCESS: logs request succeeded
       - MERGE_VIEW: updates player view
-      - VIEW_APP: ?
-      - VIEW_LOBBY: display lobby?
-      - VIEW_GAME: display game?
-      - VIEW_PLAYER: display player?
+      - VIEW_APP: triggers view update
+      - VIEW_LOBBY: displays lobby
+      - VIEW_GAME: displays game
+      - VIEW_PLAYER: displays player
       - USER_LOGIN: local user login
       - USER_DETAILS_SET: sets user information
       - LOBBY_SEND_MESSAGE: sends message in lobby chatroom

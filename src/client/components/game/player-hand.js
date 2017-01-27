@@ -5,7 +5,6 @@ import Card from "./card";
 
 export default function PlayerHand(props) {
 	const {hand, opSelectCard, selectCard, toggle, isOpen} = props;
-	const caretClass = isOpen ? "fa-caret-down" : "fa-caret-up";
 
 	return (
 		<div className={`c-player-hand ${isOpen ? "is-open" : "is-closed"}`}>
@@ -23,7 +22,7 @@ export default function PlayerHand(props) {
 						type="white"
 						card={card}
 						style="small"
-						canZoom 
+						canZoom
 						floating
 						id={key} />)}
 			</div>

@@ -12,7 +12,8 @@
 		margin-bottom: 10px;
 		background: $color-section-border;
 		width: 100%;
-		border-radius: 3px;
+		border-radius: 20px;
+		border: 1px solid #2196F3;
 	}
 
 	> .game {
@@ -79,7 +80,7 @@
 	width: 110px;
 	border: none;
 	color: #FFFFFF;
-	border-radius: 3px;
+	border-radius: 20px;
 	margin: 3px;
 	margin-right: 0;
 	padding: 0;
@@ -98,6 +99,7 @@
 	margin: 3px;
 	border: none;
 	background-color: darkgray;
+	border-radius: 20px;
 }
 
 .identity {

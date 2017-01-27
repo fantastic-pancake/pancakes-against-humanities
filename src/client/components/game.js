@@ -79,12 +79,9 @@ class GameSidebar extends ContainerBase {
 		return (
 			<section className="c-game-sidebar">
 				<div className="m-sidebar-buttons">
-					{!opLogin.can ? null :
-						<button className="m-button primary" onClick={this._login}>
-							Login to join game
-						</button>}
+					{!opLogin.can ? null : <div className="login-notify"><h3>Please login first</h3></div>}
 
-					<button className="m-button" onClick={this._exitGame}>Leave game</button>
+					<button className="m-button" onClick={this._exitGame}>Leave Game</button>
 				</div>
 				{game.step == A.STEP_DISPOSED ? null :
 					<PlayerList players={game.players} />}
@@ -106,9 +103,10 @@ function PlayerList({players}) {
 							<div className="score">
 								{player.score}
 								{player.score == 1 ? " point" : " points"}
+								<div className="status">{status}</div>
 							</div>
 						</div>
-						<div className="status">{status}</div>
+						
 					</li>
 				);
 			})}

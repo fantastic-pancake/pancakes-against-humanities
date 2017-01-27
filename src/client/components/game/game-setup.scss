@@ -39,6 +39,9 @@
 			border-radius: 3px;
 
 			&.is-selected {
+				margin-right: 18px;
+				border-radius: 20px;
+				padding: 5px;
 				border-color: $color-primary;
 			}
 		}
@@ -46,6 +49,12 @@
 
 	.start-game {
 		text-align: center;
+		padding: 10px;
+		margin-left: 39%;
+		margin-top: 140px;
+		width: 25%;
+		border-radius: 20px;
+		border: 1px solid white;
 		background: #1976D2 !important; 
 	}
 
@@ -56,4 +65,8 @@
 			border-color: lighten($color-primary, 15%);
 		}
 	}
+}
+
+.options-title {
+	padding: 20px !important;
 }

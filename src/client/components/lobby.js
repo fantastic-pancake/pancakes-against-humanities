@@ -66,8 +66,6 @@ class LobbySidebar extends ContainerBase {
 				return res.json();
 			}).then((data) => {
 
-				// TODO: make this a ternary statement depending on whether fb pic is available or not
-				// this.setState({ facebookPic: data.facebook.profilePic });
 				this.request(A.userLogin(data.facebook.name, data.facebook.profilePic));
 			});
 		}
@@ -81,7 +79,7 @@ class LobbySidebar extends ContainerBase {
 				<div className="m-sidebar-buttons">
 					{!opLogin.can ? null :
 						<div className="buttonContainer">
-							<button className="loginButton" onClick={this._login}>Local Login</button>
+							<button className="loginButton" onClick={this._login}>Quick Login</button>
 							<button className="fbLoginButton" onClick={() => {window.location.href="auth/facebook";}}></button>
 						</div>
 
@@ -101,7 +99,6 @@ class LobbySidebar extends ContainerBase {
 							</div>
 						</div>
 					}
-
 
 				</div>
 			</section>

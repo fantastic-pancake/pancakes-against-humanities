@@ -23,6 +23,10 @@
 	}
 
 	&.is-closed {
+		position: fixed;
+		width: 10%;
+		bottom: 3px;
+		margin-left: 10px;	
 		.cards {
 			display: none;
 		}

@@ -187,7 +187,7 @@ export class Game extends RoomBase {
 				this._transitionStep(A.WAIT_GAME_OVER, A.WAIT_REASON_TOO_FEW_PLAYERS);
 
 			else if (!this.players.includes(this.round.czar))
-				this._transitionStep(A.WAIT_ROUND_OVER, A.WAIT_REASON_CZAR_LEFT);
+				this._transitionStep(A.WAIT_GAME_OVER, A.WAIT_REASON_CZAR_LEFT);
 
 			else if (_.keys(this.round.stacks).length == 0)
 				this._transitionStep(A.WAIT_ROUND_OVER, A.WAIT_REASON_TOO_FEW_PLAYERS);

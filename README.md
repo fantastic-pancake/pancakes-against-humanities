@@ -89,7 +89,7 @@ Tech Used
       - STATUS_FAIL: logs request failed
       - STATUS_SUCCESS: logs request succeeded
       - MERGE_VIEW: updates player view
-      - VIEW_APP: displays application
+      - VIEW_APP: triggers view update
       - VIEW_LOBBY: displays lobby
       - VIEW_GAME: displays game
       - VIEW_PLAYER: displays player

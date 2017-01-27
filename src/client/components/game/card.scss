@@ -5,8 +5,6 @@
 
 	cursor: default;
 	display: inline-block;
-	// width: $width-card;
-	// height: $height-card;
 	position: relative;
 
 	&.black {
@@ -21,8 +19,7 @@
 		background-position: center;
 		color: #fff;
 		height: ($height-card + 70px);
-		padding: 35px;
-		padding-top: 100px;
+		padding-top: 82px;
 		text-align: center;
 		text-shadow: 0.5px 0 0 black, -0.5px 0 0 black, 0 0.5px 0 black, 0 -0.5px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
 	}
@@ -31,7 +28,6 @@
 		background: #fff;
 		background-image: url("../../../../public/pancakes.png");
 		background-size: cover;
-		// color: #000;
 		color:#fff;
 		text-shadow: 0.5px 0 0 black, -0.5px 0 0 black, 0 0.5px 0 black, 0 -0.5px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
 	}

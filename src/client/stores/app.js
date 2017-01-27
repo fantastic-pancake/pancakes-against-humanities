@@ -14,7 +14,7 @@ export default class AppStore {
 			.on$(A.DIALOG_SET)
 			.scan((stack, action) => {
 				_.remove(stack, {id: action.id});
-				
+
 				if (action.isOpen)
 					stack.push({id: action.id, props: action.props});
 
@@ -22,7 +22,7 @@ export default class AppStore {
 			}, [])
 			.startWith([])
 			.publishReplay(1);
-		
+
 		this.dialogs$.connect();
 
 		socket.on("connect", () => dispatcher.emit(A.appConnectionSet(A.CONNECTION_CONNECTED)));

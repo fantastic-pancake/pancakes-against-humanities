@@ -18,7 +18,7 @@ Login through Facebook OAuth
 Join or create room
 
 See [Official Rules](http://s3.amazonaws.com/cah/CAH_Rules.pdf) for an in-depth explaination. The basic idea is to:
-- Have each player draw ten white cards
+- Have each player draw five white cards
 - Select one player to be the Card Czar
 - This person draws a black card, which contains a question or fill-in-the-blank phrase
 - All other players select one of their white cards to answer the question or fill in the blank

@@ -1,12 +1,5 @@
 # Pancakes Against Humanity
 
-### To Do:
-- Allow to login through facebook from game room
-- Write tests for all react components
-- Display user profile image in game list, player list and chat
-- Fix up the chat box so that chat messages scroll correctly
-- Finalize CSS
-
 ## Motivation
 A pancake twist of [Cards Against Humanity](https://www.cardsagainsthumanity.com/) where users can play one another remotely using pancake themed cards while interacting over live chat.
 
@@ -30,9 +23,9 @@ See [Official Rules](http://s3.amazonaws.com/cah/CAH_Rules.pdf) for an in-depth 
   - Everyone draws white cards until they once again have ten.
 
 ## Tech
-This application is built in React, using the RxJS library to create and subscribe to event streams. RxJS is also employed on the server, and the two are connected via Websockets. The enables application state to be managed as event streams, found as stores in React, and as models serverside.
+This application is built in React, using the [RxJS](https://github.com/Reactive-Extensions/RxJS) library to create and subscribe to event streams. RxJS is also employed on the server, and the two are connected via Websockets. The enables application state to be managed as event streams, found as 'stores' in React, and as 'models' serverside. Further explaination can be found in [docs](https://github.com/fantastic-pancake/pancakes-against-humanities/tree/master/docs). There is also an excellent [primer](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754) on RxJS.
 
-Tech Used
+###Tech Used
 - HTML5/CSS3
 - Gulp/Webpack/Babel
 - Jasmine
@@ -61,16 +54,11 @@ Tech Used
   ```gulp dev```
 
 - To run unit tests
-
   - For server
     ```gulp server:test```
-
   - For client
     ```gulp client:test```
-
-  - For both
-     - Note: failing test in server will prevent client tests from running
-    ```gulp test```
+    - Client test build currently failing - likely webpack issue
 
 
 ## API
@@ -84,7 +72,7 @@ Tech Used
     - request made using `.emit("disconnect")`
   - `.on("action", <action>)` : triggers action in recipient
     - request made using `.emit("action" <action>)`
-    - [shared actions] : (https://github.com/fantastic-pancake/pancakes-against-humanities/blob/master/src/server/shared/actions.js) include:
+    - [`<action>`] (https://github.com/fantastic-pancake/pancakes-against-humanities/blob/master/src/server/shared/actions.js) can be:
       - STATUS_REQUEST: logs request made
       - STATUS_FAIL: logs request failed
       - STATUS_SUCCESS: logs request succeeded
@@ -115,3 +103,7 @@ Tech Used
       - WAIT_REASON_TOO_FEW_PLAYERS: display "there are too few players"
       - WAIT_REASON_CZAR_LEFT: display "the czar left"
       - WAIT_REASON_ROUND_FINISHED: display "it ended"
+
+### To Do:
+- Debug client test build system
+- Write tests for all react components

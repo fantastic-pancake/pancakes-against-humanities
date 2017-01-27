@@ -3,7 +3,7 @@ import * as A from "../actions";
 import {Validator} from "../shared/validation";
 import {RoomBase} from "../lib/room";
 
-export const HAND_SIZE = 10;
+export const HAND_SIZE = 5;
 export class Player extends RoomBase {
 	get view() {
 		return {

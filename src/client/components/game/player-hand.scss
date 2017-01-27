@@ -3,7 +3,7 @@
 .c-player-hand {
 	position: absolute;
 	width: 100%;
-	bottom: 17px;
+	bottom: 60px;
 	z-index: 100;
 	// border-bottom: 2px solid $color-section-border;
 	background: black;
@@ -16,13 +16,14 @@
 		cursor: pointer;
 		border-bottom-left-radius: 0;
 		border-bottom-right-radius: 0;
-
+		border: 1px solid #2196F3;
 		&:hover {
 			background: lighten($color-primary, 5%);
 		}
 	}
 
 	&.is-closed {
+		border-radius: 20px;
 		position: fixed;
 		width: 10%;
 		bottom: 3px;

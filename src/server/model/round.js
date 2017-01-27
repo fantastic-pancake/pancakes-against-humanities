@@ -21,7 +21,6 @@ export class Round {
 		this.stacks = {};
 
 		players
-			.filter(p => p != czar)
 			.forEach(p => this.addStack(p));
 
 	}

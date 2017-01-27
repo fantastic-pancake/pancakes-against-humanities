@@ -10,7 +10,7 @@ export default function PlayerHand(props) {
 	return (
 		<div className={`c-player-hand ${isOpen ? "is-open" : "is-closed"}`}>
 			<div className={`title ${opSelectCard.can ? "is-active" : ""}`} onClick={toggle}>
-				<i className={`fa ${caretClass}`} />
+				{isOpen ? <p>Hide Deck</p> : <p>Show Deck</p>}
 				{opSelectCard.error}
 
 			</div>

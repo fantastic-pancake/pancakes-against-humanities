@@ -75,6 +75,7 @@ export class Round {
 		if (index != -1)
 			this.stackList.splice(index, 1);
 
+
 		delete this.stacks[stack.id];
 	}
 

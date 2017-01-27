@@ -61,6 +61,7 @@
 		}
 
 		.status {
+			padding-top: 5px;
 			align-self: center;
 		}
 
@@ -80,4 +81,9 @@
 			margin-bottom: 1px;
 		}
 	}
+}
+
+.login-notify {
+	color: darkred;
+	padding-left: 15px;
 }

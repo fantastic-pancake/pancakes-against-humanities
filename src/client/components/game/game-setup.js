@@ -70,7 +70,7 @@ export default class GameSetup extends ContainerBase {
 
 		return (
 			<section className={`c-game-setup ${disabled ? "disabled" : "enabled"}`}>
-				<h1>
+				<h1 className="options-title">
 					Game Options
 					{!error ? null :
 						<span className="error">{error}</span>}

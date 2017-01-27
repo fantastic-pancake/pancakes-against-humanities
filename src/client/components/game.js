@@ -98,7 +98,7 @@ function PlayerList({players}) {
 				return (
 					<li key={player.id} className={cls}>
 						<div className="details">
-							<img src={player.profilePic} />
+							<img className="profile-img" src={player.profilePic} />
 							<div className="name">{player.name}</div>
 							<div className="score">
 								{player.score}

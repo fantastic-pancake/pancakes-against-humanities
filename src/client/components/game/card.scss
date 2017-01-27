@@ -10,7 +10,8 @@
 	position: relative;
 
 	&.black {
-		width: ($width-card + 90px);
+		bottom: 5px;
+		width: ($width-card + 30px);
 	}
 
 	&.black .inner {
@@ -19,7 +20,7 @@
 		background-size: cover;
 		background-position: center;
 		color: #fff;
-		height: ($height-card + 90px);
+		height: ($height-card + 70px);
 		padding: 35px;
 		padding-top: 100px;
 		text-align: center;

@@ -16,7 +16,7 @@ export default class Chat extends Component {
 		this._sendMessage = (e) => {
 			const {opSendMessage, sendMessage} = this.props;
 			e.preventDefault();
-			
+
 			if (!opSendMessage.can)
 				return;
 
@@ -48,15 +48,15 @@ export default class Chat extends Component {
 		return (
 			<section className="c-chat">
 				<ul className="messages" ref={c => this._messages = c}>
-					{messages.map(message => 
+					{messages.map(message =>
 						<li key={message.index}>
-							<img src={message.profilePic} />
+							<img className="chatProfilePic" src={message.profilePic} />
 							<span className="author">{message.name}</span>
 							<span className="message">{message.message}</span>
 						</li>)}
 				</ul>
 				<form onSubmit={this._sendMessage}>
-					<TextInput 
+					<TextInput
 						className="top-border"
 						placeholder={opSendMessage.can ? "enter a message" : "please login to chat"}
 						ref={c => this._text = c}
